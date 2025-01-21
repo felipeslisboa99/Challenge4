@@ -29,7 +29,24 @@ def calculate_metrics(y_true, y_pred):
     return {"MSE": mse, "MAE": mae, "MAPE": mape}
 
 def app():
-    st.title("⚙️ Previsões de Machine Learning")
+    # Título estilizado
+    st.markdown("""
+        <div style="
+            background-color: #0078D7;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        ">
+            <span style="margin-right: 10px;">🤖</span>
+            <span>Analisando e Compreendendo as Variações do Mercado de Petróleo com Machine Learning</span>
+        </div>
+    """, unsafe_allow_html=True)
 
     # Carregar dados
     data = load_data()
@@ -42,6 +59,7 @@ def app():
 
     # Série Temporal Original
     st.markdown("### Série Temporal Original")
+    st.write("Este gráfico mostra a evolução histórica do preço do petróleo ao longo do tempo.")
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(data['data'], data['valor'], color='blue', label='Preço do Petróleo')
     ax.set_title('Série Temporal do Preço do Petróleo')
@@ -52,6 +70,7 @@ def app():
 
     # Decomposição da Série Temporal
     st.markdown("### Decomposição da Série Temporal")
+    st.write("Este gráfico decompõe a série temporal em seus componentes principais: tendência, sazonalidade e resíduo.")
     result = seasonal_decompose(data['valor'], model='multiplicative', period=365)
     fig = result.plot()
     fig.set_size_inches(14, 7)
@@ -77,6 +96,7 @@ def app():
 
     # XGBoost
     st.markdown("### Modelo XGBoost")
+    st.write("O modelo XGBoost é usado para prever os preços do petróleo com base em variáveis derivadas de datas. Aqui estão as previsões e as métricas de desempenho.")
     x_train, y_train = train[FEATURES], train[TARGET]
     x_test, y_test = test[FEATURES], test[TARGET]
 
@@ -88,6 +108,7 @@ def app():
     st.write("Métricas XGBoost:", metrics_xgb)
 
     # Gráfico XGBoost
+    st.write("O gráfico abaixo compara as previsões do XGBoost com os valores reais.")
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(test['data'], y_test, label='Real', color='black')
     ax.plot(test['data'], preds_xgb, label='XGBoost', color='orange')
@@ -99,6 +120,7 @@ def app():
 
     # Prophet
     st.markdown("### Modelo Prophet")
+    st.write("O modelo Prophet é ajustado para capturar padrões sazonais e tendências nos dados. Abaixo estão as previsões e métricas.")
     train_prophet = train.rename(columns={"data": "ds", "valor": "y"})
     model = Prophet(daily_seasonality=True)
     model.fit(train_prophet)
@@ -111,6 +133,7 @@ def app():
     st.write("Métricas Prophet:", metrics_pr)
 
     # Gráfico Prophet
+    st.write("O gráfico abaixo mostra as previsões do Prophet em comparação com os valores reais.")
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(test['data'], y_test, label='Real', color='black')
     ax.plot(test['data'], preds_pr['yhat'], label='Prophet', color='blue')
@@ -122,6 +145,7 @@ def app():
 
     # SARIMAX
     st.markdown("### Modelo SARIMAX")
+    st.write("O modelo SARIMAX é usado para capturar dependências temporais nos dados. Aqui estão as previsões e métricas.")
     model_sarimax = SARIMAX(train['valor'], order=(5, 1, 1), seasonal_order=(0, 0, 0, 12))
     result_sarimax = model_sarimax.fit()
     preds_sarimax = result_sarimax.get_forecast(steps=len(test)).predicted_mean
@@ -130,6 +154,7 @@ def app():
     st.write("Métricas SARIMAX:", metrics_sarimax)
 
     # Gráfico SARIMAX
+    st.write("O gráfico abaixo compara as previsões do SARIMAX com os valores reais.")
     fig, ax = plt.subplots(figsize=(10, 6))
     ax.plot(test['data'], y_test, label='Real', color='black')
     ax.plot(test['data'], preds_sarimax, label='SARIMAX', color='green')
@@ -141,6 +166,7 @@ def app():
 
     # Comparação entre Modelos
     st.markdown("### Comparação entre Modelos")
+    st.write("A tabela abaixo apresenta uma comparação das métricas de desempenho entre os diferentes modelos usados.")
     comparison = pd.DataFrame({
         'Modelo': ['XGBoost', 'Prophet', 'SARIMAX'],
         'MAE': [metrics_xgb['MAE'], metrics_pr['MAE'], metrics_sarimax['MAE']],
