@@ -29,24 +29,15 @@ def calculate_metrics(y_true, y_pred):
     return {"MSE": mse, "MAE": mae, "MAPE": mape}
 
 def app():
-    # Título estilizado
-    st.markdown("""
-        <div style="
-            background-color: #0078D7;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        ">
-            <span style="margin-right: 10px;">🤖</span>
-            <span>Analisando e Compreendendo as Variações do Mercado de Petróleo com Machine Learning</span>
+        # Título da página com estilo
+    st.markdown(
+        """
+        <div style="background-color:#007acc;padding:10px;border-radius:10px">
+        <h1 style="color:white;text-align:center;">🤖 Machine Learning</h1>
         </div>
-    """, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
     # Carregar dados
     data = load_data()
