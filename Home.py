@@ -17,20 +17,20 @@ def app():
 
     # Introdução com destaque
     with tab3:
-      st.markdown(
-        """
-        <p style="text-align:justify; font-size:18px; line-height:1.6;">
-        No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
-        Analisar e compreender as oscilações de preços não é apenas uma tarefa estratégica, mas um diferencial competitivo
-        para negócios, governos e investidores.
-        </p>
-        <p style="text-align:justify; font-size:18px; line-height:1.6;">
-        Combinando a força de <b>dados históricos</b> e <b>técnicas avançadas de análise</b>, este dashboard oferece uma abordagem dinâmica para explorar
-        as variações do mercado de petróleo. Por meio de <b>visualizações interativas</b>, você poderá identificar padrões ocultos,
-        prever tendências futuras e tomar decisões fundamentadas com base em insights claros e precisos.
-        </p>
-        </div>
-        """,
+        st.markdown(
+          """
+          <p style="text-align:justify; font-size:18px; line-height:1.6;">
+          No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
+          Analisar e compreender as oscilações de preços não é apenas uma tarefa estratégica, mas um diferencial competitivo
+          para negócios, governos e investidores.
+          </p>
+          <p style="text-align:justify; font-size:18px; line-height:1.6;">
+          Combinando a força de <b>dados históricos</b> e <b>técnicas avançadas de análise</b>, este dashboard oferece uma abordagem dinâmica para explorar
+          as variações do mercado de petróleo. Por meio de <b>visualizações interativas</b>, você poderá identificar padrões ocultos,
+          prever tendências futuras e tomar decisões fundamentadas com base em insights claros e precisos.
+          </p>
+          </div>
+          """,
         unsafe_allow_html=True
     )
 
