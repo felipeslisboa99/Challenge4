@@ -1,19 +1,16 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 
-def app():
-   
-    # Título da página com estilo
+def introduction():
     st.markdown(
         """
         <div style="background-color:#007acc;padding:10px;border-radius:10px">
-        <h1 style="color:white;text-align:center;">🔎 Analisando e Compreendendo as Variações do Mercado de Petróleo</h1>
+        <h1 style="color:white;text-align:center;">🔎 Introdução</h1>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Introdução com destaque
     st.markdown(
         """
         <p style="text-align:justify; font-size:18px; line-height:1.6;">
@@ -26,12 +23,20 @@ def app():
         as variações do mercado de petróleo. Por meio de <b>visualizações interativas</b>, você poderá identificar padrões ocultos,
         prever tendências futuras e tomar decisões fundamentadas com base em insights claros e precisos.
         </p>
+        """,
+        unsafe_allow_html=True
+    )
+
+def objectives():
+    st.markdown(
+        """
+        <div style="background-color:#007acc;padding:10px;border-radius:10px">
+        <h1 style="color:white;text-align:center;">🎯 Objetivos</h1>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Objetivo do Streamlit
     st.markdown(
         """
         <p style="font-size:18px;line-height:1.6;text-align:justify;">
@@ -41,7 +46,16 @@ def app():
         unsafe_allow_html=True
     )
 
-    # Insights fundamentais com estilo
+def insights():
+    st.markdown(
+        """
+        <div style="background-color:#007acc;padding:10px;border-radius:10px">
+        <h1 style="color:white;text-align:center;">💡 Aprendizados</h1>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
     st.markdown(
         """
         <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin:20px 0;">
@@ -57,7 +71,6 @@ def app():
         unsafe_allow_html=True
     )
 
-    # Linha do Tempo
     st.markdown("### 🕒 Linha do Tempo do Mercado de Petróleo:")
     st.markdown(
         """
@@ -68,13 +81,17 @@ def app():
         """
     )
 
-    # Conclusão com destaque
-    st.markdown(
-        """
-        <div style="font-size:18px;line-height:1.6;text-align:justify;margin-top:20px;">
-        Por meio do <b>Streamlit</b>, você encontrará visualizações interativas, análises detalhadas e previsões que buscam desvendar os fatores que impulsionam as flutuações do preço do petróleo, auxiliando na tomada de decisões estratégicas.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+def app():
+    # Adiciona um menu de navegação entre páginas
+    st.sidebar.title("Navegação")
+    page = st.sidebar.radio("Ir para:", ["Introdução", "Objetivos", "Aprendizados"])
 
+    if page == "Introdução":
+        introduction()
+    elif page == "Objetivos":
+        objectives()
+    elif page == "Aprendizados":
+        insights()
+
+if __name__ == "__main__":
+    app()
