@@ -40,16 +40,14 @@ def tab_objectives():
 
     st.markdown(
         """
-        <p style="font-size:18px;line-height:1.6;text-align:justify;">
-        Este <b>Streamlit</b> foi desenvolvido com o objetivo de explorar, analisar e prever as oscilações no preço do petróleo bruto Brent, utilizando dados históricos, técnicas de <b>Machine Learning</b> e uma abordagem prática e acessível.
-        </p>
-        <p style="font-size:18px;line-height:1.6;text-align:justify;">
-        O projeto busca fornecer insights que auxiliem na compreensão das dinâmicas do mercado global de petróleo, incluindo:
+        <p style="text-align:justify; font-size:18px; line-height:1.6;">
+        Este projeto tem como principais objetivos:
         </p>
         <ul style="font-size:18px;line-height:1.8;">
-            <li><b>Análise de Padrões Históricos:</b> Compreender os fatores que moldaram o preço do petróleo ao longo do tempo.</li>
-            <li><b>Previsões Futuras:</b> Fornecer estimativas para apoiar decisões estratégicas.</li>
-            <li><b>Exploração de Fatores Econômicos:</b> Avaliar o impacto de eventos geopolíticos, crises econômicas e avanços tecnológicos.</li>
+            <li><b>Analisar Padrões de Preço:</b> Identificar oscilações históricas no preço do petróleo e entender os fatores que influenciam essas variações.</li>
+            <li><b>Desenvolver Modelos de Previsão:</b> Criar modelos robustos para prever tendências futuras utilizando técnicas de Machine Learning e estatística.</li>
+            <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights baseados em dados para apoiar empresas, governos e investidores em estratégias relacionadas ao mercado de petróleo.</li>
+            <li><b>Explorar Fatores Econômicos e Geopolíticos:</b> Avaliar como eventos globais, como crises econômicas ou avanços tecnológicos, impactam os preços.</li>
         </ul>
         """,
         unsafe_allow_html=True
@@ -59,7 +57,7 @@ def tab_insights():
     st.markdown(
         """
         <div style="background-color:#007acc;padding:10px;border-radius:10px">
-        <h1 style="color:white;text-align:center;">💡 Aprendizados e Insights</h1>
+        <h1 style="color:white;text-align:center;">💡 Aprendizados</h1>
         </div>
         """,
         unsafe_allow_html=True
@@ -67,33 +65,27 @@ def tab_insights():
 
     st.markdown(
         """
-        <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin:20px 0;">
-        <h3 style="color:#007acc;text-align:center;">🔍 Insights Fundamentais</h3>
+        <p style="text-align:justify; font-size:18px; line-height:1.6;">
+        Durante o desenvolvimento deste projeto, destacaram-se os seguintes aprendizados:
+        </p>
         <ul style="font-size:18px;line-height:1.8;">
-            <li><b>Geopolítica e Fatores Geoeconômicos:</b> Como conflitos, sanções e acordos internacionais moldam o preço do petróleo.</li>
-            <li><b>Crises Econômicas:</b> O impacto de eventos macroeconômicos globais, como recessões e mudanças na política monetária.</li>
-            <li><b>Demanda Energética:</b> A influência das mudanças na demanda por energia, especialmente em momentos de transição energética.</li>
-            <li><b>Avanços Tecnológicos:</b> O papel de inovações no setor energético, como energias renováveis e novas técnicas de extração.</li>
+            <li><b>Compreensão da Dinâmica de Preços:</b> Eventos geopolíticos e econômicos têm impacto direto e significativo no mercado de petróleo.</li>
+            <li><b>Utilização de Modelos Estatísticos e Machine Learning:</b> Abordagens combinadas geram melhores resultados na previsão de séries temporais.</li>
+            <li><b>Importância de Dados Limpos:</b> A preparação e o tratamento de dados foram cruciais para garantir a qualidade das análises.</li>
+            <li><b>Sazonalidade e Tendências:</b> Componentes sazonais e de tendência são indispensáveis para entender os ciclos de preço do petróleo.</li>
+            <li><b>Visualizações Interativas:</b> Gráficos claros e interativos facilitam a interpretação dos resultados e a comunicação dos insights.</li>
         </ul>
-        </div>
+        <p style="text-align:justify; font-size:18px; line-height:1.6;">
+        Esses aprendizados reforçam a importância de uma análise multidimensional e baseada em dados para enfrentar os desafios do mercado global.
+        </p>
         """,
         unsafe_allow_html=True
-    )
-
-    st.markdown("### 🕒 Linha do Tempo do Mercado de Petróleo:")
-    st.markdown(
-        """
-        - **1973:** Crise do Petróleo - Primeiro choque no preço global.
-        - **1986:** Queda drástica nos preços devido ao aumento da produção.
-        - **2008:** Crise financeira global - Impacto significativo na demanda de petróleo.
-        - **2020:** Pandemia de COVID-19 - Demanda reduzida drasticamente.
-        """
     )
 
 def app():
     # Layout com abas
     st.title("Dashboard do Mercado de Petróleo")
-    tabs = st.tabs(["Introdução", "Objetivos", "Aprendizados e Insights"])
+    tabs = st.tabs(["Introdução", "Objetivos", "Aprendizados"])
 
     with tabs[0]:
         tab_introduction()
