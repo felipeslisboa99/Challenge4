@@ -20,6 +20,8 @@ def app():
     with tab3:
         st.markdown(
             """
+            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+            <h3 style="color:#007acc;text-align:center;">📘 Introdução</h3>
             <p style="text-align:justify; font-size:18px; line-height:1.6;">
             No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
             Analisar e compreender as oscilações de preços não é apenas uma tarefa estratégica, mas um diferencial competitivo
@@ -64,14 +66,14 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
             <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px;">
-            Este projeto visa equipar empresas, governos e investidores com ferramentas analíticas para compreender as oscilações do preço do petróleo e sua relevância no cenário global. Os principais objetivos incluem:
+            Este projeto visa demonstrar por meio da analise de dados a oscilações do preço do petróleo e sua relevância no cenário global. Os principais objetivos incluem:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
                 <li><b>Explorar Dados Históricos:</b> Utilizar séries temporais para identificar padrões recorrentes no preço do petróleo.</li>
                 <li><b>Previsão de Preços:</b> Aplicar técnicas avançadas de Machine Learning e análise estatística para projetar tendências futuras.</li>
                 <li><b>Avaliar Impactos Geopolíticos:</b> Compreender como eventos globais afetam diretamente o mercado de petróleo.</li>
                 <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights que possibilitem decisões estratégicas em um mercado volátil.</li>
-                <li><b>Promover a Sustentabilidade:</b> Explorar o impacto das transições para fontes de energia renováveis no mercado de petróleo.</li>
+                <li><b>Ensinamento Basico de Analise de Dados e Estatistica:</b> Por meio de nosso streamlit tentamos demonstrar um pouco do dia a dia de um Analista de Dados.</li>
             </ul>
             <p style="text-align:justify; font-size:18px;">
             Com estes objetivos, este projeto busca fortalecer a compreensão do mercado de petróleo, oferecendo uma base sólida para estratégias econômicas e sustentáveis.
