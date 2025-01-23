@@ -64,19 +64,17 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
             <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px;">
-            Este projeto tem como objetivo principal explorar, analisar e prever as oscilações no preço do petróleo bruto Brent.
-            Através do uso de técnicas avançadas de análise de dados e Machine Learning, busca-se:
+            Este projeto visa equipar empresas, governos e investidores com ferramentas analíticas para compreender as oscilações do preço do petróleo e sua relevância no cenário global. Os principais objetivos incluem:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Analisar Tendências Históricas:</b> Entender padrões recorrentes e seus impactos no mercado.</li>
-                <li><b>Prever Movimentos Futuros:</b> Desenvolver modelos que auxiliem na projeção de preços futuros com base em dados históricos.</li>
-                <li><b>Identificar Fatores Chave:</b> Compreender como eventos geopolíticos, avanços tecnológicos e mudanças na demanda influenciam os preços.</li>
-                <li><b>Explorar Variáveis Macroeconômicas:</b> Avaliar como fatores como taxas de juros e inflação impactam o setor energético.</li>
-                <li><b>Mitigar Riscos:</b> Utilizar análises preditivas para reduzir impactos financeiros de oscilações imprevistas no mercado.</li>
-                <li><b>Promover Sustentabilidade:</b> Entender o papel das energias renováveis no contexto do mercado de petróleo e suas implicações futuras.</li>
+                <li><b>Explorar Dados Históricos:</b> Utilizar séries temporais para identificar padrões recorrentes no preço do petróleo.</li>
+                <li><b>Previsão de Preços:</b> Aplicar técnicas avançadas de Machine Learning e análise estatística para projetar tendências futuras.</li>
+                <li><b>Avaliar Impactos Geopolíticos:</b> Compreender como eventos globais afetam diretamente o mercado de petróleo.</li>
+                <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights que possibilitem decisões estratégicas em um mercado volátil.</li>
+                <li><b>Promover a Sustentabilidade:</b> Explorar o impacto das transições para fontes de energia renováveis no mercado de petróleo.</li>
             </ul>
             <p style="text-align:justify; font-size:18px;">
-            Com isso, esperamos fornecer uma base sólida para a tomada de decisões estratégicas em um mercado tão volátil e desafiador, auxiliando a criação de soluções inovadoras e sustentáveis.
+            Com estes objetivos, este projeto busca fortalecer a compreensão do mercado de petróleo, oferecendo uma base sólida para estratégias econômicas e sustentáveis.
             </p>
             </div>
             """,
@@ -90,19 +88,18 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
             <h3 style="color:#007acc;text-align:center;">💡 Aprendizado</h3>
             <p style="text-align:justify; font-size:18px;">
-            Durante o desenvolvimento deste projeto, vários aprendizados foram adquiridos, como:
+            O desenvolvimento deste projeto proporcionou uma ampla gama de aprendizados, destacando a complexidade e a dinâmica do mercado de petróleo. Os principais aprendizados incluem:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Importância da Preparação de Dados:</b> Dados limpos e bem estruturados são essenciais para análises confiáveis.</li>
-                <li><b>Modelos de Machine Learning:</b> Abordagens como XGBoost e Prophet mostraram-se eficazes para a previsão de séries temporais.</li>
-                <li><b>Impacto de Eventos Globais:</b> Fatores como crises econômicas e pandemias podem causar oscilações significativas no mercado.</li>
-                <li><b>Visualizações Interativas:</b> Representações gráficas ajudam na comunicação clara dos resultados e insights.</li>
-                <li><b>Adaptação a Novas Tecnologias:</b> Incorporar tecnologias emergentes foi fundamental para gerar previsões mais precisas.</li>
-                <li><b>Impacto das Energias Renováveis:</b> A análise mostrou a influência crescente das energias renováveis no mercado global.</li>
-                <li><b>Importância da Colaboração Multidisciplinar:</b> Trabalhar com equipes de diferentes áreas resultou em soluções mais completas e eficazes.</li>
+                <li><b>Importância da Análise de Dados:</b> Dados históricos são fundamentais para compreender as oscilações de preços e prever tendências futuras.</li>
+                <li><b>Relevância da Geopolítica:</b> Eventos globais, como conflitos e acordos internacionais, têm um impacto significativo no mercado de petróleo.</li>
+                <li><b>Avanços Tecnológicos:</b> O uso de Machine Learning e modelos estatísticos proporcionou maior precisão nas análises preditivas.</li>
+                <li><b>Sazonalidade e Ciclos Econômicos:</b> Identificar padrões sazonais ajuda a antecipar movimentos no mercado.</li>
+                <li><b>Impacto da Sustentabilidade:</b> A crescente adoção de energias renováveis está remodelando o mercado tradicional de petróleo.</li>
+                <li><b>Colaboração Multidisciplinar:</b> Trabalhar com equipes diversificadas foi essencial para unir conhecimentos econômicos, tecnológicos e estratégicos.</li>
             </ul>
             <p style="text-align:justify; font-size:18px;">
-            Este aprendizado reforça a importância de uma abordagem interdisciplinar, inovadora e colaborativa para enfrentar desafios em mercados complexos e em constante transformação.
+            Estes aprendizados reforçam a importância de uma abordagem estratégica e baseada em dados para lidar com os desafios e oportunidades do mercado energético global.
             </p>
             </div>
             """,
