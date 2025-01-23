@@ -13,10 +13,10 @@ def app():
         unsafe_allow_html=True
     )
      # Criando as abas
-    tab1, tab2, tab3 = st.tabs(["📘 Introducao", "🎯 Objetivo"," 💡Aprendizado"])
+    tab3, tab4, tab5 = st.tabs(["📘 Introducao", "🎯 Objetivo"," 💡Aprendizado"])
 
     # Introdução com destaque
-    with tab1:
+    with tab3:
       st.markdown(
         """
         <p style="text-align:justify; font-size:18px; line-height:1.6;">
@@ -80,7 +80,7 @@ def app():
         """,
         unsafe_allow_html=True
     )
-    with tab2:
+    with tab4:
         st.markdown(
             """
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
@@ -103,7 +103,7 @@ def app():
         )
 
     # Aba Aprendizado
-    with tab3:
+    with tab5:
         st.markdown(
             """
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
