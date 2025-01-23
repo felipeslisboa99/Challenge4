@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 
+
 def app():
     # Título da página com estilo
     st.markdown(
@@ -70,9 +71,12 @@ def app():
                 <li><b>Analisar Tendências Históricas:</b> Entender padrões recorrentes e seus impactos no mercado.</li>
                 <li><b>Prever Movimentos Futuros:</b> Desenvolver modelos que auxiliem na projeção de preços futuros com base em dados históricos.</li>
                 <li><b>Identificar Fatores Chave:</b> Compreender como eventos geopolíticos, avanços tecnológicos e mudanças na demanda influenciam os preços.</li>
+                <li><b>Explorar Variáveis Macroeconômicas:</b> Avaliar como fatores como taxas de juros e inflação impactam o setor energético.</li>
+                <li><b>Mitigar Riscos:</b> Utilizar análises preditivas para reduzir impactos financeiros de oscilações imprevistas no mercado.</li>
+                <li><b>Promover Sustentabilidade:</b> Entender o papel das energias renováveis no contexto do mercado de petróleo e suas implicações futuras.</li>
             </ul>
             <p style="text-align:justify; font-size:18px;">
-            Com isso, esperamos fornecer uma base sólida para a tomada de decisões estratégicas em um mercado tão volátil.
+            Com isso, esperamos fornecer uma base sólida para a tomada de decisões estratégicas em um mercado tão volátil e desafiador, auxiliando a criação de soluções inovadoras e sustentáveis.
             </p>
             </div>
             """,
@@ -93,14 +97,18 @@ def app():
                 <li><b>Modelos de Machine Learning:</b> Abordagens como XGBoost e Prophet mostraram-se eficazes para a previsão de séries temporais.</li>
                 <li><b>Impacto de Eventos Globais:</b> Fatores como crises econômicas e pandemias podem causar oscilações significativas no mercado.</li>
                 <li><b>Visualizações Interativas:</b> Representações gráficas ajudam na comunicação clara dos resultados e insights.</li>
+                <li><b>Adaptação a Novas Tecnologias:</b> Incorporar tecnologias emergentes foi fundamental para gerar previsões mais precisas.</li>
+                <li><b>Impacto das Energias Renováveis:</b> A análise mostrou a influência crescente das energias renováveis no mercado global.</li>
+                <li><b>Importância da Colaboração Multidisciplinar:</b> Trabalhar com equipes de diferentes áreas resultou em soluções mais completas e eficazes.</li>
             </ul>
             <p style="text-align:justify; font-size:18px;">
-            Este aprendizado reforça a importância de uma abordagem interdisciplinar para enfrentar desafios em mercados complexos.
+            Este aprendizado reforça a importância de uma abordagem interdisciplinar, inovadora e colaborativa para enfrentar desafios em mercados complexos e em constante transformação.
             </p>
             </div>
             """,
             unsafe_allow_html=True
         )
+
 
 if __name__ == "__main__":
     app()
