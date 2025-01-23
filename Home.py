@@ -12,9 +12,12 @@ def app():
         """,
         unsafe_allow_html=True
     )
+     # Criando as abas
+    tab1, tab2, tab3 = st.tabs(["📘 Introducao", "🎯 Objetivo"," 💡Aprendizado"])
 
     # Introdução com destaque
-    st.markdown(
+    with tab1:
+      st.markdown(
         """
         <p style="text-align:justify; font-size:18px; line-height:1.6;">
         No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
@@ -77,4 +80,39 @@ def app():
         """,
         unsafe_allow_html=True
     )
+    #Pagina Objetivos
+    with tab2:
+        st.markdown(
+             """
+            <h3 style="text-align:center;">🔍 Análise de Insights</h3>
+            <p style="text-align:justify; font-size:18px;">
+            Nesta seção, apresentamos os insights gerados a partir dos dados, abordando fatores como:
+            </p>
+            <ul style="font-size:16px;line-height:1.8;">
+                <li><b>Tendências Históricas:</b> Análise dos padrões de preços ao longo dos anos.</li>
+                <li><b>Correlação de Variáveis:</b> Impactos de fatores geopolíticos e econômicos no mercado de petróleo.</li>
+                <li><b>Previsões:</b> Insights futuros com base em modelos de Machine Learning.</li>
+            </ul>
+            <hr style="border:1px solid #007acc;">
+            """,
+            unsafe_allow_html=True
 
+        )
+    #Pagina Aprendizados    
+    with tab3:
+        st.markdown(
+            """
+            <h3 style="text-align:center;">🔍 Análise de Insights</h3>
+            <p style="text-align:justify; font-size:18px;">
+            Nesta seção, apresentamos os insights gerados a partir dos dados, abordando fatores como:
+            </p>
+            <ul style="font-size:16px;line-height:1.8;">
+                <li><b>Tendências Históricas:</b> Análise dos padrões de preços ao longo dos anos.</li>
+                <li><b>Correlação de Variáveis:</b> Impactos de fatores geopolíticos e econômicos no mercado de petróleo.</li>
+                <li><b>Previsões:</b> Insights futuros com base em modelos de Machine Learning.</li>
+            </ul>
+            <hr style="border:1px solid #007acc;">
+            """,
+            unsafe_allow_html=True
+        )
+        

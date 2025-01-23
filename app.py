@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 from multiapp import MultiApp
-from Introducao import app as introducao_app
+from Home import app as home_app
 from Insights import app as insights_app
 from Machine_Learning import app as machine_learning_app
 from Deploy import app as deploy_app
@@ -19,7 +19,7 @@ st.set_page_config(
 app = MultiApp()
 
 # Adicionar a navegação no topo da barra lateral
-app.add_app("📖 Introdução", introducao_app)
+app.add_app("🏠 Home", home_app)
 app.add_app("📊 Insights", insights_app)
 app.add_app("🤖 Modelo de Machine Learning", machine_learning_app)
 app.add_app("🚀 Deploy", deploy_app)
