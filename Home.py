@@ -21,7 +21,7 @@ def app():
         st.markdown(
             """
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
-            <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
+            <h3 style="color:#007acc;text-align:center;">📘 Introdução</h3>
             <p style="text-align:justify; font-size:18px; line-height:1.6;">
             No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
             Analisar e compreender as oscilações de preços não é apenas uma tarefa estratégica, mas um diferencial competitivo
@@ -66,16 +66,15 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
             <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px;">
-            Este projeto foi idealizado para fornecer uma compreensão ampla e estratégica sobre as oscilações do mercado de petróleo,
-            explorando dados históricos, tendências atuais e perspectivas futuras. Com isso, busca-se alcançar os seguintes objetivos:
+            O objetivo deste projeto é analisar e compreender as oscilações do mercado de petróleo por meio de dados históricos e técnicas avançadas de Machine Learning. Busca-se identificar padrões sazonais, avaliar o impacto de eventos geopolíticos e prever tendências futuras com alta precisão. Além disso, o projeto visa explorar como a transição para energias renováveis influencia o mercado tradicional. Combinando análises estatísticas e visuais, pretende-se fornecer insights práticos que auxiliem na tomada de decisões estratégicas em um mercado altamente volátil. Assim, o projeto contribui para uma compreensão aprofundada e embasada do setor energético global.:
             </p>
-            <ul style="font-size:16px;line-height:1.8;">
+           <ul style="font-size:16px;line-height:1.8;">
                <li><b>Identificar Padrões Relevantes:</b> Realizar uma análise detalhada de séries temporais para identificar sazonalidades, ciclos econômicos e tendências de longo prazo no mercado de petróleo.</li>
                <li><b>Compreender Impactos Geopolíticos:</b> Explorar como eventos globais, como guerras, sanções e negociações internacionais, influenciam diretamente os preços.</li>
                <li><b>Previsão de Oscilações:</b> Desenvolver modelos de Machine Learning robustos para prever flutuações futuras no mercado de petróleo, com foco em acurácia e confiabilidade.</li>
                <li><b>Promover Sustentabilidade:</b> Avaliar como a transição para energias renováveis impacta o mercado tradicional e suas implicações econômicas.</li>
                <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights claros e práticos para que investidores e gestores possam criar estratégias de mitigação de riscos em mercados voláteis.</li>
-            </ul>
+           </ul>
            <p style="text-align:justify; font-size:18px;">
            Este projeto não apenas aborda a análise histórica, mas também visa trazer inovações em previsões e ferramentas analíticas que possam ser aplicadas em diferentes setores econômicos e energéticos.
            </p>
