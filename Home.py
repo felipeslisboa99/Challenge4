@@ -80,39 +80,50 @@ def app():
         """,
         unsafe_allow_html=True
     )
-    #Pagina Objetivos
     with tab2:
         st.markdown(
-             """
-            <h3 style="text-align:center;">🔍 Análise de Insights</h3>
+            """
+            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+            <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px;">
-            Nesta seção, apresentamos os insights gerados a partir dos dados, abordando fatores como:
+            Este projeto tem como objetivo principal explorar, analisar e prever as oscilações no preço do petróleo bruto Brent.
+            Através do uso de técnicas avançadas de análise de dados e Machine Learning, busca-se:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Tendências Históricas:</b> Análise dos padrões de preços ao longo dos anos.</li>
-                <li><b>Correlação de Variáveis:</b> Impactos de fatores geopolíticos e econômicos no mercado de petróleo.</li>
-                <li><b>Previsões:</b> Insights futuros com base em modelos de Machine Learning.</li>
+                <li><b>Analisar Tendências Históricas:</b> Entender padrões recorrentes e seus impactos no mercado.</li>
+                <li><b>Prever Movimentos Futuros:</b> Desenvolver modelos que auxiliem na projeção de preços futuros com base em dados históricos.</li>
+                <li><b>Identificar Fatores Chave:</b> Compreender como eventos geopolíticos, avanços tecnológicos e mudanças na demanda influenciam os preços.</li>
             </ul>
-            <hr style="border:1px solid #007acc;">
+            <p style="text-align:justify; font-size:18px;">
+            Com isso, esperamos fornecer uma base sólida para a tomada de decisões estratégicas em um mercado tão volátil.
+            </p>
+            </div>
             """,
             unsafe_allow_html=True
-
         )
-    #Pagina Aprendizados    
+
+    # Aba Aprendizado
     with tab3:
         st.markdown(
             """
-            <h3 style="text-align:center;">🔍 Análise de Insights</h3>
+            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+            <h3 style="color:#007acc;text-align:center;">💡 Aprendizado</h3>
             <p style="text-align:justify; font-size:18px;">
-            Nesta seção, apresentamos os insights gerados a partir dos dados, abordando fatores como:
+            Durante o desenvolvimento deste projeto, vários aprendizados foram adquiridos, como:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Tendências Históricas:</b> Análise dos padrões de preços ao longo dos anos.</li>
-                <li><b>Correlação de Variáveis:</b> Impactos de fatores geopolíticos e econômicos no mercado de petróleo.</li>
-                <li><b>Previsões:</b> Insights futuros com base em modelos de Machine Learning.</li>
+                <li><b>Importância da Preparação de Dados:</b> Dados limpos e bem estruturados são essenciais para análises confiáveis.</li>
+                <li><b>Modelos de Machine Learning:</b> Abordagens como XGBoost e Prophet mostraram-se eficazes para a previsão de séries temporais.</li>
+                <li><b>Impacto de Eventos Globais:</b> Fatores como crises econômicas e pandemias podem causar oscilações significativas no mercado.</li>
+                <li><b>Visualizações Interativas:</b> Representações gráficas ajudam na comunicação clara dos resultados e insights.</li>
             </ul>
-            <hr style="border:1px solid #007acc;">
+            <p style="text-align:justify; font-size:18px;">
+            Este aprendizado reforça a importância de uma abordagem interdisciplinar para enfrentar desafios em mercados complexos.
+            </p>
+            </div>
             """,
             unsafe_allow_html=True
         )
-        
+
+if __name__ == "__main__":
+    app()
