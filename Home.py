@@ -21,7 +21,7 @@ def app():
         st.markdown(
             """
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
-            <h3 style="color:#007acc;text-align:center;">📘 Introdução</h3>
+            <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px; line-height:1.6;">
             No coração da economia global, o <span style="color:#007acc;font-weight:bold;">petróleo</span> desempenha um papel vital como motor do progresso e da energia.
             Analisar e compreender as oscilações de preços não é apenas uma tarefa estratégica, mas um diferencial competitivo
@@ -66,47 +66,51 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
             <h3 style="color:#007acc;text-align:center;">🎯 Objetivo</h3>
             <p style="text-align:justify; font-size:18px;">
-            Este projeto visa demonstrar por meio da analise de dados a oscilações do preço do petróleo e sua relevância no cenário global. Os principais objetivos incluem:
+            Este projeto foi idealizado para fornecer uma compreensão ampla e estratégica sobre as oscilações do mercado de petróleo,
+            explorando dados históricos, tendências atuais e perspectivas futuras. Com isso, busca-se alcançar os seguintes objetivos:
             </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Explorar Dados Históricos:</b> Utilizar séries temporais para identificar padrões recorrentes no preço do petróleo.</li>
-                <li><b>Previsão de Preços:</b> Aplicar técnicas avançadas de Machine Learning e análise estatística para projetar tendências futuras.</li>
-                <li><b>Avaliar Impactos Geopolíticos:</b> Compreender como eventos globais afetam diretamente o mercado de petróleo.</li>
-                <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights que possibilitem decisões estratégicas em um mercado volátil.</li>
-                <li><b>Ensinamento Basico de Analise de Dados e Estatistica:</b> Por meio de nosso streamlit tentamos demonstrar um pouco do dia a dia de um Analista de Dados.</li>
+               <li><b>Identificar Padrões Relevantes:</b> Realizar uma análise detalhada de séries temporais para identificar sazonalidades, ciclos econômicos e tendências de longo prazo no mercado de petróleo.</li>
+               <li><b>Compreender Impactos Geopolíticos:</b> Explorar como eventos globais, como guerras, sanções e negociações internacionais, influenciam diretamente os preços.</li>
+               <li><b>Previsão de Oscilações:</b> Desenvolver modelos de Machine Learning robustos para prever flutuações futuras no mercado de petróleo, com foco em acurácia e confiabilidade.</li>
+               <li><b>Promover Sustentabilidade:</b> Avaliar como a transição para energias renováveis impacta o mercado tradicional e suas implicações econômicas.</li>
+               <li><b>Auxiliar na Tomada de Decisões:</b> Fornecer insights claros e práticos para que investidores e gestores possam criar estratégias de mitigação de riscos em mercados voláteis.</li>
             </ul>
-            <p style="text-align:justify; font-size:18px;">
-            Com estes objetivos, este projeto busca fortalecer a compreensão do mercado de petróleo, oferecendo uma base sólida para estratégias econômicas e sustentáveis.
-            </p>
+           <p style="text-align:justify; font-size:18px;">
+           Este projeto não apenas aborda a análise histórica, mas também visa trazer inovações em previsões e ferramentas analíticas que possam ser aplicadas em diferentes setores econômicos e energéticos.
+           </p>
             </div>
-            """,
-            unsafe_allow_html=True
+           """,
+           unsafe_allow_html=True
         )
+
 
     # Aba Aprendizado
     with tab5:
         st.markdown(
-            """
-            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
-            <h3 style="color:#007acc;text-align:center;">💡 Aprendizado</h3>
-            <p style="text-align:justify; font-size:18px;">
-            O desenvolvimento deste projeto proporcionou uma ampla gama de aprendizados, destacando a complexidade e a dinâmica do mercado de petróleo. Os principais aprendizados incluem:
-            </p>
+           """
+           <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+           <h3 style="color:#007acc;text-align:center;">💡 Aprendizado</h3>
+           <p style="text-align:justify; font-size:18px;">
+           Durante o desenvolvimento deste projeto, uma série de aprendizados importantes foram alcançados, abrangendo desde a análise de dados históricos até a aplicação de modelos preditivos e compreensão de fatores externos que moldam o mercado de petróleo.
+           </p>
             <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Importância da Análise de Dados:</b> Dados históricos são fundamentais para compreender as oscilações de preços e prever tendências futuras.</li>
-                <li><b>Relevância da Geopolítica:</b> Eventos globais, como conflitos e acordos internacionais, têm um impacto significativo no mercado de petróleo.</li>
-                <li><b>Avanços Tecnológicos:</b> O uso de Machine Learning e modelos estatísticos proporcionou maior precisão nas análises preditivas.</li>
-                <li><b>Sazonalidade e Ciclos Econômicos:</b> Identificar padrões sazonais ajuda a antecipar movimentos no mercado.</li>
-                <li><b>Impacto da Sustentabilidade:</b> A crescente adoção de energias renováveis está remodelando o mercado tradicional de petróleo.</li>
-                <li><b>Colaboração Multidisciplinar:</b> Trabalhar com equipes diversificadas foi essencial para unir conhecimentos econômicos, tecnológicos e estratégicos.</li>
+               <li><b>Preparação de Dados:</b> A limpeza e organização de dados históricos provaram ser essenciais para garantir análises confiáveis e robustas.</li>
+               <li><b>Impacto de Eventos Geopolíticos:</b> Conflitos internacionais e sanções econômicas desempenham um papel crucial na determinação das oscilações de preço.</li>
+               <li><b>Sazonalidade e Tendências:</b> A identificação de padrões sazonais no mercado possibilitou uma melhor compreensão dos ciclos de oferta e demanda.</li>
+               <li><b>Eficiência dos Modelos Preditivos:</b> Técnicas como Prophet e XGBoost demonstraram eficácia ao capturar variações complexas em séries temporais.</li>
+               <li><b>Influência de Energias Renováveis:</b> A crescente adoção de fontes renováveis tem alterado a dinâmica do mercado, trazendo novas oportunidades e desafios.</li>
+               <li><b>Importância de Visualizações:</b> Representações gráficas interativas tornaram os dados mais acessíveis, facilitando a comunicação de resultados para diferentes públicos.</li>
+               <li><b>Abordagem Multidisciplinar:</b> Trabalhar com conhecimentos de economia, ciência de dados e política global resultou em análises mais completas e integradas.</li>
             </ul>
-            <p style="text-align:justify; font-size:18px;">
-            Estes aprendizados reforçam a importância de uma abordagem estratégica e baseada em dados para lidar com os desafios e oportunidades do mercado energético global.
-            </p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+           <p style="text-align:justify; font-size:18px;">
+           Esses aprendizados reforçam a necessidade de análises detalhadas e interdisciplinares para enfrentar os desafios de um mercado tão dinâmico e influenciado por múltiplos fatores.
+           </p>
+           </div>
+           """,
+           unsafe_allow_html=True
+    )
+
 
 
 if __name__ == "__main__":
