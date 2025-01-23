@@ -1,6 +1,5 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-import pandas as pd
 
 def app():
     # Título da página com estilo
@@ -38,13 +37,14 @@ def app():
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin:20px 0;">
             <h3 style="color:#007acc;text-align:center;">🔍 Insights Fundamentais</h3>
             <ul style="font-size:18px;line-height:1.8;">
-                <li><b>Geopolítica e Fatores Geoeconômicos</b>: Como conflitos, sanções e acordos internacionais moldam o preço do petróleo.</li>
-                <li><b>Crises Econômicas</b>: O impacto de eventos macroeconômicos globais, como recessões e mudanças na política monetária.</li>
-                <li><b>Demanda Energética</b>: A influência das mudanças na demanda por energia, especialmente em momentos de transição energética.</li>
-                <li><b>Avanços Tecnológicos</b>: O papel de inovações no setor energético, como energias renováveis e novas técnicas de extração.</li>
+                <li><b>Geopolítica e Fatores Geoeconômicos:</b> Como conflitos, sanções e acordos internacionais moldam o preço do petróleo.</li>
+                <li><b>Crises Econômicas:</b> O impacto de eventos macroeconômicos globais, como recessões e mudanças na política monetária.</li>
+                <li><b>Demanda Energética:</b> A influência das mudanças na demanda por energia, especialmente em momentos de transição energética.</li>
+                <li><b>Avanços Tecnológicos:</b> O papel de inovações no setor energético, como energias renováveis e novas técnicas de extração.</li>
             </ul>
             </div>
-            """
+            """,
+            unsafe_allow_html=True
         )
         st.markdown(
             """
