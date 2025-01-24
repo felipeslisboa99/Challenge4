@@ -36,18 +36,24 @@ def app():
             unsafe_allow_html=True
         )
         st.markdown(
-            """
-            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin:20px 0;">
-            <h3 style="color:#007acc;text-align:center;">🔍 Insights Fundamentais</h3>
-            <ul style="font-size:18px;line-height:1.8;">
-                <li><b>Geopolítica e Fatores Geoeconômicos:</b> Como conflitos, sanções e acordos internacionais moldam o preço do petróleo.</li>
-                <li><b>Crises Econômicas:</b> O impacto de eventos macroeconômicos globais, como recessões e mudanças na política monetária.</li>
-                <li><b>Demanda Energética:</b> A influência das mudanças na demanda por energia, especialmente em momentos de transição energética.</li>
-                <li><b>Avanços Tecnológicos:</b> O papel de inovações no setor energético, como energias renováveis e novas técnicas de extração.</li>
-            </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
+           """
+           <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+           <h3 style="color:#007acc;text-align:center;">📘 Tipos de Introdução</h3>
+           <ul style="font-size:16px;line-height:1.8;">
+              <li><b>Introdução Histórica:</b> Explorar como o mercado de petróleo evoluiu ao longo das décadas, destacando eventos marcantes que moldaram seus preços e importância.</li>
+              <li><b>Introdução Geopolítica:</b> Destacar o impacto de conflitos, sanções e acordos internacionais na dinâmica do mercado global de petróleo.</li>
+              <li><b>Introdução Tecnológica:</b> Analisar como avanços em Machine Learning e tecnologias de previsão revolucionaram a compreensão e análise do mercado de petróleo.</li>
+              <li><b>Introdução Sustentável:</b> Enfatizar a transição global para fontes de energia renováveis e como isso desafia e transforma o setor de petróleo.</li>
+              <li><b>Introdução Estratégica:</b> Apresentar o mercado de petróleo como um elemento essencial para decisões econômicas, políticas e de negócios em escala global.</li>
+           </ul>
+           <p style="text-align:justify; font-size:18px;">
+           Este projeto permite abordar o tema de maneira diversificada, unindo análises históricas, impactos globais e inovações tecnológicas para oferecer uma visão holística do mercado de petróleo.
+           </p>
+           </div>
+           """,
+    unsafe_allow_html=True
+
+
         )
         st.markdown(
             """
@@ -104,7 +110,7 @@ def app():
            unsafe_allow_html=True
         )
         st.markdown(
-            """"
+            """
             <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin:20px 0;">
             <h3 style="color:#007acc;text-align:center;"> 🧠 Tipos de Aprendizados</h3>
             <ul style="font-size:16px;line-height:1.8;">
