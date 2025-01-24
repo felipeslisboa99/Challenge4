@@ -51,7 +51,7 @@ def app():
            </p>
            </div>
            """,
-    unsafe_allow_html=True
+           unsafe_allow_html=True
 
 
         )
@@ -65,7 +65,8 @@ def app():
             - **2008:** Crise financeira global - Impacto significativo na demanda de petróleo.
             - **2020:** Pandemia de COVID-19 - Demanda reduzida drasticamente.
             - **2022:**  Guerra na Ucrânia - A invasão pela Rússia gerou sanções econômicas e aumentou os preços devido a incertezas no fornecimento.
-            """
+            """,
+            unsafe_allow_html=True
         )
 
     # Aba Objetivo
