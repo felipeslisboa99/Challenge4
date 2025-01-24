@@ -38,7 +38,7 @@ def app():
         st.markdown(
            """
            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
-           <h3 style="color:#007acc;text-align:center;">📘 Tipos de Introdução</h3>
+           <h3 style="color:#007acc;text-align:center;">🌍 Tipos de Introdução</h3>
            <ul style="font-size:16px;line-height:1.8;">
               <li><b>Introdução Histórica:</b> Explorar como o mercado de petróleo evoluiu ao longo das décadas, destacando eventos marcantes que moldaram seus preços e importância.</li>
               <li><b>Introdução Geopolítica:</b> Destacar o impacto de conflitos, sanções e acordos internacionais na dinâmica do mercado global de petróleo.</li>
@@ -61,10 +61,10 @@ def app():
             <h3 style="color:#007acc;text-align:center;">🕒 Linha do Tempo do Mercado de Petróleo</h3>
             - **1973:** Crise do Petróleo - Primeiro choque no preço global.
             - **1986:** Queda drástica nos preços devido ao aumento da produção.
-            - **1990**  Guerra do Golfo - A invasão do Kuwait pelo Iraque gerou uma nova crise no fornecimento.
+            - **1990:**  Guerra do Golfo - A invasão do Kuwait pelo Iraque gerou uma nova crise no fornecimento.
             - **2008:** Crise financeira global - Impacto significativo na demanda de petróleo.
             - **2020:** Pandemia de COVID-19 - Demanda reduzida drasticamente.
-            - **2022**  Guerra na Ucrânia - A invasão pela Rússia gerou sanções econômicas e aumentou os preços devido a incertezas no fornecimento.
+            - **2022:**  Guerra na Ucrânia - A invasão pela Rússia gerou sanções econômicas e aumentou os preços devido a incertezas no fornecimento.
             """
         )
 
