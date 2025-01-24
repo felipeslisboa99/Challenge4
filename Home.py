@@ -56,18 +56,24 @@ def app():
 
         )
         st.markdown(
-            """
-            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
-            <h3 style="color:#007acc;text-align:center;">🕒 Linha do Tempo do Mercado de Petróleo</h3>
-            - **1973:** Crise do Petróleo - Primeiro choque no preço global.
-            - **1986:** Queda drástica nos preços devido ao aumento da produção.
-            - **1990:**  Guerra do Golfo - A invasão do Kuwait pelo Iraque gerou uma nova crise no fornecimento.
-            - **2008:** Crise financeira global - Impacto significativo na demanda de petróleo.
-            - **2020:** Pandemia de COVID-19 - Demanda reduzida drasticamente.
-            - **2022:**  Guerra na Ucrânia - A invasão pela Rússia gerou sanções econômicas e aumentou os preços devido a incertezas no fornecimento.
-            """,
-            unsafe_allow_html=True
-        )
+           """
+           <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;">
+           <h3 style="color:#007acc;text-align:center;">🕒 Linha do Tempo do Mercado de Petróleo</h3>
+           <ul style="font-size:16px;line-height:1.8;">
+               <li><b>1973 - Crise do Petróleo:</b> Primeiro choque no preço global devido ao embargo da OPEP.</li>
+               <li><b>1986 - Queda de Preços:</b> Produção excessiva pela OPEP causou queda significativa nos preços.</li>
+               <li><b>1990 - Guerra do Golfo:</b> A invasão do Kuwait pelo Iraque gerou uma nova crise no fornecimento global.</li>
+               <li><b>2008 - Crise Financeira Global:</b> Demanda reduzida impactou drasticamente os preços do petróleo.</li>
+               <li><b>2020 - Pandemia de COVID-19:</b> Lockdowns globais reduziram a demanda drasticamente.</li>
+               <li><b>2022 - Guerra na Ucrânia:</b> A invasão pela Rússia gerou sanções econômicas e elevou os preços devido às incertezas no fornecimento.</li>
+           </ul>
+           <p style="text-align:justify; font-size:18px;">
+          Essa e a lista dos principais acontecimentos geopoliticos que afetaram o valor do pretoleo nesses ultmos anos.
+           </div>
+           """,
+    unsafe_allow_html=True
+)
+
 
     # Aba Objetivo
     with tab4:
