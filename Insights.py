@@ -2,7 +2,6 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def app():
     # Título principal
     st.markdown(
@@ -30,20 +29,6 @@ def app():
             unsafe_allow_html=True
         )
 
-        # Como usar o dashboard
-        st.markdown(
-            """
-            <h4>🛠 Como usar este dashboard:</h4>
-            <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Indicadores-Chave:</b> Veja métricas como o preço máximo, mínimo e médio em diferentes períodos.</li>
-                <li><b>Filtros Interativos:</b> Personalize sua análise ajustando os filtros no painel.</li>
-                <li><b>Comparação de Períodos:</b> Compare diferentes anos ou meses para avaliar tendências.</li>
-            </ul>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Link de incorporação do Power BI
         st.markdown(
             """
             <iframe 
@@ -57,27 +42,8 @@ def app():
             unsafe_allow_html=True
         )
 
-        # Benefícios do dashboard
-        st.markdown(
-            """
-            <div style="background-color:#f4f4f9;padding:15px;border-radius:10px;margin-top:20px;">
-            <h4 style="text-align:center;">✨ Benefícios do Dashboard</h4>
-            <p style="text-align:justify; font-size:16px;">
-            Este dashboard é ideal para:
-            </p>
-            <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Tomada de Decisões:</b> Compreenda o impacto de eventos históricos e geopolíticos nos preços.</li>
-                <li><b>Análise Intuitiva:</b> Gráficos interativos para facilitar a compreensão de tendências.</li>
-                <li><b>Planejamento Estratégico:</b> Use insights para fundamentar estratégias no mercado de petróleo.</li>
-                <li><b>Monitoramento de Tendências:</b> Identifique rapidamente os movimentos do mercado para tomar decisões em tempo real.</li>
-            </ul>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
     # Conteúdo da aba Insights Detalhados
-    
+    with tab2:
         st.markdown(
             """
             <h3 style="text-align:center;">🔍 Análise de Insights Detalhados</h3>
@@ -88,8 +54,6 @@ def app():
             unsafe_allow_html=True
         )
 
-        # Conteúdo da primeira coluna (Análises)
-    
         st.markdown(
             """
             <h4 style="text-align:center;">📊 Principais Insights</h4>
@@ -97,20 +61,12 @@ def app():
                 <li><b>Tendências Históricas:</b> Análise detalhada das mudanças de preços ao longo dos últimos anos.</li>
                 <li><b>Correlação de Variáveis:</b> Impactos diretos e indiretos de fatores geopolíticos e econômicos no mercado.</li>
                 <li><b>Modelos Preditivos:</b> Projeções futuras usando Machine Learning e algoritmos estatísticos.</li>
-             </ul>
-             """,
-             unsafe_allow_html=True
-        )
-
-         # Gráfico de exemplo: Tendências históricas
-        st.markdown(
-            """
-            <h5 style="text-align:center;">📈 Tendências Históricas</h5>
+            </ul>
             """,
             unsafe_allow_html=True
         )
 
-        # Dados para o gráfico
+        # Gráfico de Tendências Históricas
         x = np.linspace(0, 10, 100)
         y = np.sin(x)
 
@@ -124,32 +80,7 @@ def app():
 
         st.pyplot(fig)
 
-        # Conteúdo da segunda coluna (Explicações e Previsões)
-    
-        st.markdown(
-            """
-            <h4 style="text-align:center;">📋 Explicações e Previsões</h4>
-            <p style="text-align:justify; font-size:16px;">
-            A partir das análises, é possível identificar padrões críticos que afetam diretamente os preços no mercado. As previsões a seguir são baseadas em modelos avançados:
-            </p>
-            <ul style="font-size:16px;line-height:1.8;">
-                <li><b>Previsões de curto prazo:</b> Aumento gradual nos próximos meses devido à demanda sazonal.</li>
-                <li><b>Impactos de eventos geopolíticos:</b> Oscilações significativas causadas por instabilidade em regiões produtoras.</li>
-                <li><b>Estimativas de longo prazo:</b> Adaptação do mercado às fontes de energia renováveis.</li>
-            </ul>
-             """,
-            unsafe_allow_html=True
-        )
-
-        # Gráfico de previsão
-        st.markdown(
-            """
-            <h5 style="text-align:center;">🔮 Projeções Futuras</h5>
-            """,
-            unsafe_allow_html=True
-        )
-
-        # Dados para o gráfico de previsão
+        # Gráfico de Projeções Futuras
         x_future = np.linspace(0, 10, 100)
         y_future = np.cos(x_future) + 0.2 * np.random.randn(100)
 
@@ -163,15 +94,3 @@ def app():
 
         st.pyplot(fig2)
 
-       # Rodapé com resumo
-        st.markdown(
-            """
-            <hr style="border:1px solid #007acc;">
-         <div style="background-color:#f9f9f9;padding:15px;border-radius:10px;margin-top:20px;">
-            <p style="text-align:justify;font-size:16px;">
-            Com base nos insights apresentados, é possível estruturar estratégias robustas para minimizar riscos e aproveitar oportunidades no mercado. Para mais detalhes, consulte as seções específicas ou entre em contato com nossos especialistas.
-           </p>
-         </div>
-           """,
-        unsafe_allow_html=True
-        )
