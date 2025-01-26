@@ -77,7 +77,7 @@ def app():
         )
 
     # Conteúdo da aba Insights Detalhados
-    with tab2:
+    
         st.markdown(
             """
             <h3 style="text-align:center;">🔍 Análise de Insights Detalhados</h3>
@@ -92,7 +92,7 @@ def app():
         col1, col2 = st.columns([1, 1])
 
         # Conteúdo da primeira coluna (Análises)
-    with col1:
+    
         st.markdown(
             """
             <h4 style="text-align:center;">📊 Principais Insights</h4>
@@ -128,7 +128,7 @@ def app():
         st.pyplot(fig)
 
         # Conteúdo da segunda coluna (Explicações e Previsões)
-    with col2:
+    
         st.markdown(
             """
             <h4 style="text-align:center;">📋 Explicações e Previsões</h4>
