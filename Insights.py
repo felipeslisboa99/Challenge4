@@ -88,9 +88,6 @@ def app():
             unsafe_allow_html=True
         )
 
-        # Dividindo a página em colunas para organização
-        col1, col2 = st.columns([1, 1])
-
         # Conteúdo da primeira coluna (Análises)
     
         st.markdown(
