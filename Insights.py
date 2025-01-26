@@ -79,102 +79,102 @@ def app():
     # Conteúdo da aba Insights Detalhados
     with tab2:
         st.markdown(
-    """
-    <h3 style="text-align:center;">🔍 Análise de Insights Detalhados</h3>
-    <p style="text-align:justify; font-size:18px;">
-    Bem-vindo à seção de Insights Detalhados! Aqui, exploramos os dados em profundidade, destacando tendências, correlações e previsões com base em análises avançadas e modelagem preditiva.
-    </p>
-    """,
-    unsafe_allow_html=True
-)
+            """
+            <h3 style="text-align:center;">🔍 Análise de Insights Detalhados</h3>
+            <p style="text-align:justify; font-size:18px;">
+            Bem-vindo à seção de Insights Detalhados! Aqui, exploramos os dados em profundidade, destacando tendências, correlações e previsões com base em análises avançadas e modelagem preditiva.
+            </p>
+            """,
+            unsafe_allow_html=True
+        )
 
-# Dividindo a página em colunas para organização
-col1, col2 = st.columns([1, 1])
+        # Dividindo a página em colunas para organização
+        col1, col2 = st.columns([1, 1])
 
-# Conteúdo da primeira coluna (Análises)
-with col1:
-    st.markdown(
-        """
-        <h4 style="text-align:center;">📊 Principais Insights</h4>
-        <ul style="font-size:16px;line-height:1.8;">
-            <li><b>Tendências Históricas:</b> Análise detalhada das mudanças de preços ao longo dos últimos anos.</li>
-            <li><b>Correlação de Variáveis:</b> Impactos diretos e indiretos de fatores geopolíticos e econômicos no mercado.</li>
-            <li><b>Modelos Preditivos:</b> Projeções futuras usando Machine Learning e algoritmos estatísticos.</li>
-        </ul>
-        """,
+        # Conteúdo da primeira coluna (Análises)
+    with col1:
+        st.markdown(
+            """
+            <h4 style="text-align:center;">📊 Principais Insights</h4>
+            <ul style="font-size:16px;line-height:1.8;">
+                <li><b>Tendências Históricas:</b> Análise detalhada das mudanças de preços ao longo dos últimos anos.</li>
+                <li><b>Correlação de Variáveis:</b> Impactos diretos e indiretos de fatores geopolíticos e econômicos no mercado.</li>
+                <li><b>Modelos Preditivos:</b> Projeções futuras usando Machine Learning e algoritmos estatísticos.</li>
+             </ul>
+             """,
+             unsafe_allow_html=True
+        )
+
+         # Gráfico de exemplo: Tendências históricas
+        st.markdown(
+            """
+            <h5 style="text-align:center;">📈 Tendências Históricas</h5>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Dados para o gráfico
+        x = np.linspace(0, 10, 100)
+        y = np.sin(x)
+
+        fig, ax = plt.subplots(figsize=(8, 4))
+        ax.plot(x, y, label="Oscilações Históricas", color="blue", linewidth=2)
+        ax.set_title("Oscilações de Preços do Petróleo", fontsize=14)
+        ax.set_xlabel("Período")
+        ax.set_ylabel("Preço")
+        ax.legend()
+        ax.grid(alpha=0.5)
+
+        st.pyplot(fig)
+
+        # Conteúdo da segunda coluna (Explicações e Previsões)
+    with col2:
+        st.markdown(
+            """
+            <h4 style="text-align:center;">📋 Explicações e Previsões</h4>
+            <p style="text-align:justify; font-size:16px;">
+            A partir das análises, é possível identificar padrões críticos que afetam diretamente os preços no mercado. As previsões a seguir são baseadas em modelos avançados:
+            </p>
+            <ul style="font-size:16px;line-height:1.8;">
+                <li><b>Previsões de curto prazo:</b> Aumento gradual nos próximos meses devido à demanda sazonal.</li>
+                <li><b>Impactos de eventos geopolíticos:</b> Oscilações significativas causadas por instabilidade em regiões produtoras.</li>
+                <li><b>Estimativas de longo prazo:</b> Adaptação do mercado às fontes de energia renováveis.</li>
+            </ul>
+             """,
+            unsafe_allow_html=True
+        )
+
+        # Gráfico de previsão
+        st.markdown(
+            """
+            <h5 style="text-align:center;">🔮 Projeções Futuras</h5>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Dados para o gráfico de previsão
+        x_future = np.linspace(0, 10, 100)
+        y_future = np.cos(x_future) + 0.2 * np.random.randn(100)
+
+        fig2, ax2 = plt.subplots(figsize=(8, 4))
+        ax2.plot(x_future, y_future, label="Projeção de Preços", color="green", linewidth=2)
+        ax2.set_title("Projeção de Preços do Petróleo", fontsize=14)
+        ax2.set_xlabel("Período")
+        ax2.set_ylabel("Preço Previsto")
+        ax2.legend()
+        ax2.grid(alpha=0.5)
+
+        st.pyplot(fig2)
+
+       # Rodapé com resumo
+        st.markdown(
+            """
+            <hr style="border:1px solid #007acc;">
+         <div style="background-color:#f9f9f9;padding:15px;border-radius:10px;margin-top:20px;">
+            <p style="text-align:justify;font-size:16px;">
+            Com base nos insights apresentados, é possível estruturar estratégias robustas para minimizar riscos e aproveitar oportunidades no mercado. Para mais detalhes, consulte as seções específicas ou entre em contato com nossos especialistas.
+           </p>
+         </div>
+           """,
         unsafe_allow_html=True
-    )
-
-    # Gráfico de exemplo: Tendências históricas
-    st.markdown(
-        """
-        <h5 style="text-align:center;">📈 Tendências Históricas</h5>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Dados para o gráfico
-    x = np.linspace(0, 10, 100)
-    y = np.sin(x)
-
-    fig, ax = plt.subplots(figsize=(8, 4))
-    ax.plot(x, y, label="Oscilações Históricas", color="blue", linewidth=2)
-    ax.set_title("Oscilações de Preços do Petróleo", fontsize=14)
-    ax.set_xlabel("Período")
-    ax.set_ylabel("Preço")
-    ax.legend()
-    ax.grid(alpha=0.5)
-
-    st.pyplot(fig)
-
-# Conteúdo da segunda coluna (Explicações e Previsões)
-with col2:
-    st.markdown(
-        """
-        <h4 style="text-align:center;">📋 Explicações e Previsões</h4>
-        <p style="text-align:justify; font-size:16px;">
-        A partir das análises, é possível identificar padrões críticos que afetam diretamente os preços no mercado. As previsões a seguir são baseadas em modelos avançados:
-        </p>
-        <ul style="font-size:16px;line-height:1.8;">
-            <li><b>Previsões de curto prazo:</b> Aumento gradual nos próximos meses devido à demanda sazonal.</li>
-            <li><b>Impactos de eventos geopolíticos:</b> Oscilações significativas causadas por instabilidade em regiões produtoras.</li>
-            <li><b>Estimativas de longo prazo:</b> Adaptação do mercado às fontes de energia renováveis.</li>
-        </ul>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Gráfico de previsão
-    st.markdown(
-        """
-        <h5 style="text-align:center;">🔮 Projeções Futuras</h5>
-        """,
-        unsafe_allow_html=True
-    )
-
-    # Dados para o gráfico de previsão
-    x_future = np.linspace(0, 10, 100)
-    y_future = np.cos(x_future) + 0.2 * np.random.randn(100)
-
-    fig2, ax2 = plt.subplots(figsize=(8, 4))
-    ax2.plot(x_future, y_future, label="Projeção de Preços", color="green", linewidth=2)
-    ax2.set_title("Projeção de Preços do Petróleo", fontsize=14)
-    ax2.set_xlabel("Período")
-    ax2.set_ylabel("Preço Previsto")
-    ax2.legend()
-    ax2.grid(alpha=0.5)
-
-    st.pyplot(fig2)
-
-# Rodapé com resumo
-st.markdown(
-    """
-    <hr style="border:1px solid #007acc;">
-    <div style="background-color:#f9f9f9;padding:15px;border-radius:10px;margin-top:20px;">
-        <p style="text-align:justify;font-size:16px;">
-        Com base nos insights apresentados, é possível estruturar estratégias robustas para minimizar riscos e aproveitar oportunidades no mercado. Para mais detalhes, consulte as seções específicas ou entre em contato com nossos especialistas.
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+        )
