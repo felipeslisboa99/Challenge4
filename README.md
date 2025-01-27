@@ -18,14 +18,7 @@ Este repositório contém o projeto da **Fase 4 do Tech Challenge**, desenvolvid
   - Insights acionáveis para tomada de decisão no setor de petróleo.
 
 ## 📂 Estrutura do Repositório
-Challenge4/
-├── Analise_Dados.py            # Script para análise exploratória de dados
-├── Machine_Learning.py         # Modelagem e avaliação de algoritmos de ML
-├── app.py                      # Aplicação principal para integração
-├── base_petroleo.xlsx          # Dados utilizados no projeto
-├── requirements.txt            # Dependências do projeto
-├── Power_BI/                   # Arquivos do Power BI para relatórios
-└── README.md                   # Documentação do repositório
+Challenge4/ ├── Analise_Dados.py # Script para análise exploratória de dados ├── Machine_Learning.py # Modelagem e avaliação de algoritmos de ML ├── app.py # Aplicação principal para integração ├── base_petroleo.xlsx # Dados utilizados no projeto ├── requirements.txt # Dependências do projeto ├── Power_BI/ # Arquivos do Power BI para relatórios └── README.md # Documentação do repositório
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -46,17 +39,13 @@ Certifique-se de ter instalado:
 
 ## 📦 Instalação
 
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/felipeslisboa99/Challenge4.git
-2. Acesse o diretório do projeto:
-   cd Challenge4
-3. Crie um ambiente virtual (opcional, mas recomendado):
+1. **Clone este repositório**: git clone https://github.com/felipeslisboa99/Challenge4.git
+2. **Acesse o diretório do projeto**: cd Challenge4
+3. **Crie um ambiente virtual (opcional, mas recomendado)**:
    python -m venv venv
    source venv/bin/activate       # Para Mac/Linux
    venv\Scripts\activate          # Para Windows
-4. Instale as dependências:
-   pip install -r requirements.txt
+4. **Instale as dependências**: pip install -r requirements.txt
 ## 📊 Power Bi
 ![image](https://github.com/user-attachments/assets/7414e3e4-1bfd-4d52-b9d1-196ed8e4df64)
 
