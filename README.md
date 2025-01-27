@@ -17,9 +17,6 @@ Este repositório contém o projeto da **Fase 4 do Tech Challenge**, desenvolvid
   - Criação de relatórios e visualizações no **Power BI**.
   - Insights acionáveis para tomada de decisão no setor de petróleo.
 
-## 📂 Estrutura do Repositório
-Challenge4/ ├── Analise_Dados.py # Script para análise exploratória de dados ├── Machine_Learning.py # Modelagem e avaliação de algoritmos de ML ├── app.py # Aplicação principal para integração ├── base_petroleo.xlsx # Dados utilizados no projeto ├── requirements.txt # Dependências do projeto ├── Power_BI/ # Arquivos do Power BI para relatórios └── README.md # Documentação do repositório
-
 ## 🚀 Tecnologias Utilizadas
 
 - **Python 3.x**
