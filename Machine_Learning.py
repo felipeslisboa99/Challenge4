@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Substitua pela URL do Ngrok gerada no Colab
-COLAB_API_URL = "http://127.0.0.1:5000"
+COLAB_API_URL = "https://4faz53ou3rr-496ff2e9c6d22116-5000-colab.googleusercontent.com/"
 
 def predict_from_colab(value):
     response = requests.post(COLAB_API_URL, json={"value": value})
