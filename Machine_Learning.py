@@ -20,7 +20,7 @@ def app():
     st.title("Tech Petróleo - Análise de Dados")
     
 with st.spinner("Carregando... Isso pode levar alguns segundos"):
-    time.sleep(5)  # Simula um tempo de carregamento
+    time.sleep(1)  # Simula um tempo de carregamento
     st.write("Pronto! 🎉")
 
     st.markdown("### 📂  Carregar o arquivo diretamente")
