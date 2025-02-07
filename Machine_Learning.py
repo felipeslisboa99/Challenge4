@@ -1,4 +1,5 @@
 import streamlit as st
+import time
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -17,6 +18,10 @@ from statsmodels.graphics.tsaplots import plot_acf as _plot_acf, plot_pacf as _p
 
 def app():
     st.title("Tech Petróleo - Análise de Dados")
+    
+with st.spinner("Carregando... Isso pode levar alguns segundos"):
+    time.sleep(5)  # Simula um tempo de carregamento
+    st.write("Pronto! 🎉")
 
     st.markdown("### 📂  Carregar o arquivo diretamente")
     file_path = r"C:\Users\felip\OneDrive\Documentos\GitHub\Challenge4\base_petroleo.xlsx"
