@@ -1,4 +1,5 @@
 import streamlit as st
+import itertools
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -67,12 +68,16 @@ def app():
     fig.set_size_inches(14, 7)
     st.pyplot(fig)
 
+    df_petroleo = data
+    df_petroleo = df_petroleo.sort_values(by='data', ascending=True)
+
     # Dividir os dados em treino e teste
     train_size = len(data) - 253
     train, test = data[:train_size], data[train_size:]
 
     # Feature Engineering
     def create_features(df):
+        df["Data"] = pd.to_datetime(df["data"])
         df['year'] = df['data'].dt.year
         df['month'] = df['data'].dt.month
         df['day'] = df['data'].dt.day
@@ -82,7 +87,7 @@ def app():
     train = create_features(train.copy())
     test = create_features(test.copy())
 
-    FEATURES = ['year', 'month', 'day', 'dayofweek']
+    FEATURES = ['year', 'month', 'day', 'dayofweek', 'valor']
     TARGET = 'valor'
 
     # XGBoost
@@ -96,62 +101,120 @@ def app():
     preds_xgb = reg.predict(x_test)
 
     metrics_xgb = calculate_metrics(y_test, preds_xgb)
+    MAPE_xgb = metrics_xgb["MAPE"]
     st.write("Métricas XGBoost:", metrics_xgb)
+    st.write(f"Acurácia de {100 - (MAPE_xgb * 100) :.2f}%")
 
     # Gráfico XGBoost
-    st.write("O gráfico abaixo compara as previsões do XGBoost com os valores reais.")
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(test['data'], y_test, label='Real', color='black')
-    ax.plot(test['data'], preds_xgb, label='XGBoost', color='orange')
-    ax.set_title('Previsão XGBoost vs Real')
+    xgboost_results = pd.DataFrame({'Data': test['data'], 'Previsão': preds_xgb})
+
+    fig, ax = plt.subplots(figsize=(14, 7))
+    ax.plot(test['data'], test['valor'], label='Real', color='black')
+    ax.plot(xgboost_results['Data'], xgboost_results['Previsão'], label='XGBoost', color='orange')
+    ax.set_title('Comparação de Previsão do Modelo XGBoost com os Dados Reais')
     ax.set_xlabel('Data')
-    ax.set_ylabel('Preço')
+    ax.set_ylabel('Petróleo')
     ax.legend()
     st.pyplot(fig)
 
     # Prophet
     st.markdown("### Modelo Prophet")
     st.write("O modelo Prophet é ajustado para capturar padrões sazonais e tendências nos dados. Abaixo estão as previsões e métricas.")
-    train_prophet = train.rename(columns={"data": "ds", "valor": "y"})
+    train_prophet = train.rename(columns={"Data": "ds", "valor": "y"})
+    train_prophet["valor"] = train["valor"]
+
+    test_prophet = test.rename(columns={"Data": "ds", "valor": "y"})
+    test_prophet["valor"] = test["valor"]
+
     model = Prophet(daily_seasonality=True)
+    model.add_regressor("valor")
     model.fit(train_prophet)
 
     future = model.make_future_dataframe(periods=len(test))
+    future["valor"] = pd.concat([train["valor"], test["valor"]], ignore_index=True)
     forecast = model.predict(future)
 
-    preds_pr = forecast[['ds', 'yhat']].tail(len(test))
-    metrics_pr = calculate_metrics(y_test, preds_pr['yhat'])
-    st.write("Métricas Prophet:", metrics_pr)
+    preds_pr = forecast[["ds", "yhat"]].tail(len(test))
+    preds_pr = preds_pr.set_index("ds")
+    y_test = test_prophet.set_index("ds")["y"]
+    metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
+
+    MAPE_pr = metrics_pr["MAPE"]
+    print("Prophet Metrics")
+    print(metrics_pr)
+    print(f"Acurácia de {100 - (MAPE_pr * 100): .2f}%")
 
     # Gráfico Prophet
-    st.write("O gráfico abaixo mostra as previsões do Prophet em comparação com os valores reais.")
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(test['data'], y_test, label='Real', color='black')
-    ax.plot(test['data'], preds_pr['yhat'], label='Prophet', color='blue')
-    ax.set_title('Previsão Prophet vs Real')
-    ax.set_xlabel('Data')
-    ax.set_ylabel('Preço')
-    ax.legend()
-    st.pyplot(fig)
+    prophet_results = preds_pr.reset_index()
 
-    # SARIMAX
+    plt.figure(figsize=(14, 7))
+
+    plt.plot(test['Data'], test['valor'], label='Real', color='black')
+
+    plt.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
+
+    plt.title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
+    plt.xlabel('Data')
+    plt.ylabel('Petroleo')
+    plt.legend()
+    plt.show()
+
+# SARIMAX
     st.markdown("### Modelo SARIMAX")
     st.write("O modelo SARIMAX é usado para capturar dependências temporais nos dados. Aqui estão as previsões e métricas.")
-    model_sarimax = SARIMAX(train['valor'], order=(5, 1, 1), seasonal_order=(0, 0, 0, 12))
-    result_sarimax = model_sarimax.fit()
-    preds_sarimax = result_sarimax.get_forecast(steps=len(test)).predicted_mean
 
-    metrics_sarimax = calculate_metrics(y_test, preds_sarimax)
+    # Definição do grid search para encontrar melhores parâmetros
+    p = d = q = range(0, 3)  # Testando valores de 0 a 2
+    P = D = Q = range(0, 2)  # Testando valores de 0 a 1
+    m = [7, 12]  # Período sazonal: semanal (7) ou mensal (12)
+    param_grid = list(itertools.product(p, d, q, P, D, Q, m))
+
+    best_aic = float("inf")
+    best_params = None
+    if "valor" not in train.columns or "valor" not in test.columns:
+        raise ValueError("A coluna 'valor' não foi encontrada no conjunto de dados.")
+    exog_train = train[["valor"]].copy()
+    exog_test = test[["valor"]].copy()
+
+    for (p, d, q, P, D, Q, m) in param_grid:
+        try:
+            model = SARIMAX(train["valor"], order=(p, d, q), seasonal_order=(P, D, Q, m), exog=exog_train)
+            result = model.fit()
+            if result.aic < best_aic:
+                best_aic = result.aic
+                best_params = (p, d, q, P, D, Q, m)
+        except:
+            continue  # Pula combinações que falham
+
+    st.write("Melhores parâmetros SARIMAX:", best_params)
+
+    # Treinando o modelo com os melhores parâmetros encontrados
+    p, d, q, P, D, Q, m = best_params
+    model_sarimax = SARIMAX(train["valor"], exog=exog_train, order=(p, d, q), seasonal_order=(P, D, Q, m))
+    result_sarimax = model_sarimax.fit()
+
+    # Fazer previsões
+    preds_sarimax = result_sarimax.get_forecast(steps=len(test), exog=exog_test).predicted_mean
+
+    # Avaliação do modelo
+    metrics_sarimax = calculate_metrics(test["valor"], preds_sarimax)
+    MAPE_sarimax = metrics_sarimax["MAPE"]
     st.write("Métricas SARIMAX:", metrics_sarimax)
+    st.write(f"Acurácia de {100 - (MAPE_sarimax * 100): .2f}%")
 
     # Gráfico SARIMAX
     st.write("O gráfico abaixo compara as previsões do SARIMAX com os valores reais.")
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.plot(test['data'], y_test, label='Real', color='black')
-    ax.plot(test['data'], preds_sarimax, label='SARIMAX', color='green')
-    ax.set_title('Previsão SARIMAX vs Real')
+    sarimax_results = pd.DataFrame({
+        'Data': pd.to_datetime(test['Data']),
+        'Previsão': preds_sarimax.values
+    })
+
+    fig, ax = plt.subplots(figsize=(14, 7))
+    ax.plot(test['Data'], test['valor'], label='Real', color='black')
+    ax.plot(sarimax_results['Data'], sarimax_results['Previsão'], label='SARIMAX', color='green', linestyle='dashed')
+    ax.set_title('Comparação de Previsão do Modelo SARIMAX com os Dados Reais')
     ax.set_xlabel('Data')
-    ax.set_ylabel('Preço')
+    ax.set_ylabel('Petróleo')
     ax.legend()
     st.pyplot(fig)
 
@@ -165,6 +228,5 @@ def app():
         'MAPE': [metrics_xgb['MAPE'], metrics_pr['MAPE'], metrics_sarimax['MAPE']]
     })
     st.dataframe(comparison)
-
-if __name__ == "__main__":
-    app()
+    if __name__ == "__main__":
+        app()
