@@ -1,6 +1,6 @@
 import streamlit as st
-
-st.title("Tech Petróleo - Análise de Dados")
+def app():
+    st.title("Tech Petróleo - Análise de Dados")
 import pandas as pd
 import numpy as np
 
