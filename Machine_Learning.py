@@ -1,142 +1,79 @@
 import streamlit as st
-import time
-import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import statsmodels.api as sm
 import xgboost as xgb
-import pmdarima as pm
 from prophet import Prophet
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    mean_absolute_percentage_error
-)
-from statsmodels.tsa.seasonal import seasonal_decompose
-from statsmodels.tsa.stattools import adfuller
-from statsmodels.graphics.tsaplots import plot_acf as _plot_acf, plot_pacf as _plot_pacf
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
 
-def app():
-    st.title("Tech Petróleo - Análise de Dados")
-    
-with st.spinner("Carregando... Isso pode levar alguns segundos"):
-    time.sleep(1)  # Simula um tempo de carregamento
-    st.write("Pronto! 🎉")
+# Título da página
+st.title("🤖 Modelo de Machine Learning")
 
-    st.markdown("### 📂  Carregar o arquivo diretamente")
-    file_path = r"C:\Users\felip\OneDrive\Documentos\GitHub\Challenge4\base_petroleo.xlsx"
+# Carregar os dados do arquivo base_petroleo.xlsx
+@st.cache_data
+def load_data():
+    return pd.read_excel("base_petroleo.xlsx")
 
-    try:
-        # 📂 Carregar o arquivo diretamente 
-        df = pd.read_excel(file_path)
-        st.write("Dados carregados com sucesso!")
-        st.dataframe(df.head())
+df = load_data()
 
-        df['data'] = pd.to_datetime(df['data'])
+# Exibir os dados carregados
+st.write("### Dados Carregados")
+st.dataframe(df.head())
 
-        # 🔹 Gráfico de Série Temporal st.markdown("###  🔹 Gráfico de Série Temporal ") 
-        fig, ax = plt.subplots(figsize=(10, 6))
-        ax.plot(df['data'], df['preco_bruto_Brent_FOB'], linestyle='-')
-        ax.set_title('Série Temporal')
-        ax.set_xlabel('Data')
-        ax.set_ylabel('Valor')
-        ax.grid(True)
-        st.pyplot(fig)
+# Conversão de Data para DateTime
+df['data'] = pd.to_datetime(df['data'])
 
-        st.markdown("###  🔹 Teste de estacionaridade (Dickey-Fuller) ") 
-        adf_result = adfuller(df['preco_bruto_Brent_FOB'].dropna())
-        st.write(f"ADF Statistic: {adf_result[0]}")
-        st.write(f"p-value: {adf_result[1]}")
-        st.write(f"Critical Values: {adf_result[4]}")
+# Seleção das colunas para modelagem
+variaveis = df.drop(columns=['data']).columns.tolist()
+target = st.selectbox("Selecione a variável alvo:", variaveis)
 
-        if adf_result[1] < 0.03:
-            st.success("A série temporal é estacionária")
-        else:
-            st.warning("A série temporal não é estacionária")
+# Seleção das features
+features = st.multiselect("Selecione as variáveis preditoras:", variaveis, default=variaveis[:-1])
 
-        st.markdown("###  🔹 Diferenciação da Série Temporal ") 
-        df['Diferenciado'] = df['preco_bruto_Brent_FOB'].diff()
-        fig, ax = plt.subplots(figsize=(12, 6))
-        ax.plot(df['Diferenciado'])
-        ax.set_title('Série Temporal Diferenciada (Estacionarizada)')
-        ax.set_xlabel('Tempo')
-        ax.set_ylabel('Valores Diferenciados')
-        st.pyplot(fig)
+if target and features:
+    X = df[features]
+    y = df[target]
 
-        st.markdown("### 🔹 ACF e PACF ") 
-        fig, ax = plt.subplots(figsize=(12, 6))
-        _plot_acf(df['Diferenciado'].dropna(), lags=30, ax=ax)
-        ax.set_title('ACF da Série Diferenciada')
-        st.pyplot(fig)
+    # Divisão em treino e teste
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-        fig, ax = plt.subplots(figsize=(12, 6))
-        _plot_pacf(df['Diferenciado'].dropna(), lags=30, ax=ax)
-        ax.set_title('PACF da Série Diferenciada')
-        st.pyplot(fig)
+    # Treinamento do modelo XGBoost
+    model_xgb = xgb.XGBRegressor(objective='reg:squarederror', random_state=42)
+    model_xgb.fit(X_train, y_train)
+    pred_xgb = model_xgb.predict(X_test)
 
-        # Criando features
-        df["year"] = df["data"].dt.year
-        df["month"] = df["data"].dt.month
-        df["day"] = df["data"].dt.day
-        df["dayofweek"] = df["data"].dt.dayofweek
+    # Treinamento do modelo Random Forest
+    model_rf = RandomForestRegressor(n_estimators=100, random_state=42)
+    model_rf.fit(X_train, y_train)
+    pred_rf = model_rf.predict(X_test)
 
-        st.markdown("###  📊 Divisão de treino e teste ") 
-        train_size = len(df) - 253
-        train, test = df[:train_size], df[train_size:]
-
-        FEATURES = ["year", "month", "day", "dayofweek", "preco_bruto_Brent_FOB"]
-        TARGET = "preco_bruto_Brent_FOB"
-
-        x_train, y_train = train[FEATURES], train[TARGET]
-        x_test, y_test = test[FEATURES], test[TARGET]
-
-        st.markdown("### 🚀 Modelo XGBoost ") 
-        reg = xgb.XGBRegressor(objective="reg:squarederror")
-        reg.fit(x_train, y_train)
-
-        preds_xgb = reg.predict(x_test)
-
-        st.markdown("### 🔹 Métricas XGBoost ") 
-        metrics_xgb = {
-            "MSE": mean_squared_error(y_test, preds_xgb),
-            "MAE": mean_absolute_error(y_test, preds_xgb),
-            "MAPE": mean_absolute_percentage_error(y_test, preds_xgb),
+    # Métricas dos modelos
+    def calcular_metricas(y_true, y_pred):
+        return {
+            "MAE": mean_absolute_error(y_true, y_pred),
+            "MSE": mean_squared_error(y_true, y_pred),
+            "R²": r2_score(y_true, y_pred)
         }
-        st.write("Métricas do Modelo XGBoost:")
-        st.json(metrics_xgb)
 
-        st.markdown("### 🚀   Prophet")  
-        train_prophet = train.rename(columns={"data": "ds", "preco_bruto_Brent_FOB": "y"})
-        model = Prophet(daily_seasonality=True)
-        model.fit(train_prophet)
+    metricas_xgb = calcular_metricas(y_test, pred_xgb)
+    metricas_rf = calcular_metricas(y_test, pred_rf)
 
-        future = model.make_future_dataframe(periods=len(test))
-        forecast = model.predict(future)
+    # Exibir as métricas
+    st.write("### 🎯 Desempenho dos Modelos")
+    st.write("**XGBoost:**", metricas_xgb)
+    st.write("**Random Forest:**", metricas_rf)
 
-        preds_pr = forecast[["ds", "yhat"]].tail(len(test))
-        preds_pr.set_index("ds", inplace=True)
+    # Previsões futuras com Prophet (se houver uma variável de data)
+    if 'data' in df.columns:
+        st.write("### 🔮 Previsão com Prophet")
 
-        st.markdown("### 🔹  Métricas Prophet") 
-        metrics_pr = {
-            "MSE": mean_squared_error(y_test, preds_pr["yhat"]),
-            "MAE": mean_absolute_error(y_test, preds_pr["yhat"]),
-            "MAPE": mean_absolute_percentage_error(y_test, preds_pr["yhat"]),
-        }
-        st.write("Métricas do Modelo Prophet:")
-        st.json(metrics_pr)
+        df_prophet = df[['data', target]].rename(columns={'data': 'ds', target: 'y'})
+        model_prophet = Prophet()
+        model_prophet.fit(df_prophet)
 
-        st.markdown("### 🔹 Comparação visual dos modelos")
-        fig, ax = plt.subplots(figsize=(14, 7))
-        ax.plot(test['data'], test['preco_bruto_Brent_FOB'], label='Real', color='black')
-        ax.plot(test['data'], preds_xgb, label='XGBoost', color='orange')
-        ax.plot(preds_pr.index, preds_pr["yhat"], label='Prophet', color='blue')
-        ax.set_title('Comparação de Modelos')
-        ax.set_xlabel('Data')
-        ax.set_ylabel('Preço do Petróleo')
-        ax.legend()
-        st.pyplot(fig)
+        future = model_prophet.make_future_dataframe(periods=30)
+        forecast = model_prophet.predict(future)
 
-    except FileNotFoundError:
-        st.error("Erro: O arquivo não foi encontrado. Verifique o caminho e tente novamente.")
-    except Exception as e:
-        st.error(f"Erro ao carregar os dados: {e}")
+        st.write("### 🔍 Previsão para os próximos 30 dias")
+        st.dataframe(forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail(30))
