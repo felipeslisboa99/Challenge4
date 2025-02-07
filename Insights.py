@@ -93,4 +93,3 @@ def app():
         ax2.grid(alpha=0.5)
 
         st.pyplot(fig2)
-

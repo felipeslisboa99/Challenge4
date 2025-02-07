@@ -7,7 +7,6 @@ from Machine_Learning import app as machine_learning_app
 from Deploy import app as deploy_app
 from Analise_Dados import app as analise_dados_app
 
-
 # Configuração inicial do Streamlit
 st.set_page_config(
     page_title="Tech Challenge: Fase 4",
@@ -19,12 +18,12 @@ st.set_page_config(
 app = MultiApp()
 
 # Adicionar a navegação no topo da barra lateral
+st.sidebar.title("📌 Navegação")
 app.add_app("🏠 Home", home_app)
 app.add_app("📊 Insights", insights_app)
 app.add_app("🤖 Modelo de Machine Learning", machine_learning_app)
 app.add_app("🚀 Deploy", deploy_app)
-app.add_app("📈 Analise de Dados", analise_dados_app)
-
+app.add_app("📈 Análise de Dados", analise_dados_app)
 
 # Rodar o MultiApp (controla a navegação entre as páginas)
 app.run()
@@ -44,4 +43,3 @@ st.sidebar.markdown("""
 - **Turma:** 6DTAT  
 - **Instituição:** FIAP - Pós em Data Analytics  
 """)
-

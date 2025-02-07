@@ -140,4 +140,3 @@ with st.spinner("Carregando... Isso pode levar alguns segundos"):
         st.error("Erro: O arquivo não foi encontrado. Verifique o caminho e tente novamente.")
     except Exception as e:
         st.error(f"Erro ao carregar os dados: {e}")
-
