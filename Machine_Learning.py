@@ -8,32 +8,33 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 
 # Título da página
-st.title("🤖 Modelo de Machine Learning")
+ 
+def app():
+    st.title("🤖 Modelo de Machine Learning")
 
-# Carregar os dados do arquivo base_petroleo.xlsx
-@st.cache_data
-def load_data():
-    return pd.read_excel("base_petroleo.xlsx")
-
-df = load_data()
+    # Carregar os dados do arquivo base_petroleo.xlsx
+    @st.cache_data
+    def load_data():
+        return pd.read_excel("base_petroleo.xlsx")
+    df = load_data()
 
 # Exibir os dados carregados
-st.write("### Dados Carregados")
-st.dataframe(df.head())
+    st.write("### Dados Carregados")
+    st.dataframe(df.head())
 
 # Conversão de Data para DateTime
-df['data'] = pd.to_datetime(df['data'])
+    df['data'] = pd.to_datetime(df['data'])
 
 # Seleção das colunas para modelagem
-variaveis = df.drop(columns=['data']).columns.tolist()
-target = st.selectbox("Selecione a variável alvo:", variaveis)
+    variaveis = df.drop(columns=['data']).columns.tolist()
+    target = st.selectbox("Selecione a variável alvo:", variaveis)
 
 # Seleção das features
-features = st.multiselect("Selecione as variáveis preditoras:", variaveis, default=variaveis[:-1])
+    features = st.multiselect("Selecione as variáveis preditoras:", variaveis, default=variaveis[:-1])
 
-if target and features:
-    X = df[features]
-    y = df[target]
+    if target and features:
+        X = df[features]
+        y = df[target]
 
     # Divisão em treino e teste
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
