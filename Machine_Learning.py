@@ -1,8 +1,21 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import statsmodels.api as sm
+import xgboost as xgb
+import pmdarima as pm
+from prophet import Prophet
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    mean_absolute_percentage_error
+
+)
+from statsmodels.tsa.seasonal import seasonal_decompose
+
 def app():
     st.title("Tech Petróleo - Análise de Dados")
-import pandas as pd
-import numpy as np
 
 file_path = "base_petroleo.xlsx"
 
@@ -28,21 +41,6 @@ df_anual.head()
 
 df['data'] = pd.to_datetime(df["data"])
 df.dtypes
-
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-import statsmodels.api as sm
-import xgboost as xgb
-import pmdarima as pm
-from prophet import Prophet
-from sklearn.metrics import (
-    mean_absolute_error,
-    mean_squared_error,
-    mean_absolute_percentage_error
-
-)
-from statsmodels.tsa.seasonal import seasonal_decompose
 
 plt.figure(figsize=(10, 6))
 plt.plot(df['data'], df['valor'], linestyle='-')
