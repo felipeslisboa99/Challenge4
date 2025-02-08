@@ -138,8 +138,6 @@ def app():
     ax.legend()
     st.pyplot(fig)
     # Modelo Prophet
-    st.subheader("🔮 Previsão com Prophet")
-
     train_prophet = train.rename(columns={"Data": "ds", "valor": "y"})
     train_prophet["valor"] = train["valor"]
 
@@ -154,7 +152,6 @@ def app():
     future["valor"] = pd.concat([train["valor"], test["valor"]], ignore_index=True)
     forecast = model.predict(future)
 
-    # Previsões Prophet
     preds_pr = forecast[["ds", "yhat"]].tail(len(test))
     preds_pr = preds_pr.set_index("ds")
     y_test = test_prophet.set_index("ds")["y"]
@@ -164,7 +161,7 @@ def app():
 
     st.subheader("📊 Métricas do Modelo Prophet")
     st.write(metrics_pr)
-    st.write(f"**Acurácia de {100 - (MAPE_pr * 100): .2f}%**")
+    st.write(f"Acurácia de {100 - (MAPE_pr * 100): .2f}%")
 
     # Resultados Prophet
     prophet_results = preds_pr.reset_index()
@@ -172,6 +169,7 @@ def app():
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.plot(test['Data'], test['valor'], label='Real', color='black')
     ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
+    
     ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
     ax.set_xlabel('Data')
     ax.set_ylabel('Petróleo')
