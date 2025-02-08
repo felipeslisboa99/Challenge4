@@ -50,7 +50,7 @@ def app():
 
     # Decomposição Sazonal
     st.write("### 🔍 Decomposição Sazonal")
-    result = seasonal_decompose(df['valor'], model='additive', period=30)
+    result = seasonal_decompose(df['valor'], model='additive', period=365)
     fig = result.plot()
     fig.set_size_inches(14, 7)
     st.pyplot(fig)
@@ -137,7 +137,47 @@ def app():
     ax.set_ylabel('Preço do Petróleo')
     ax.legend()
     st.pyplot(fig)
+    # Modelo Prophet
+    st.subheader("🔮 Previsão com Prophet")
 
-# Executar a aplicação no Streamlit
+    train_prophet = train.rename(columns={"Data": "ds", "valor": "y"})
+    train_prophet["valor"] = train["valor"]
+
+    test_prophet = test.rename(columns={"Data": "ds", "valor": "y"})
+    test_prophet["valor"] = test["valor"]
+
+    model = Prophet(daily_seasonality=True)
+    model.add_regressor("valor")
+    model.fit(train_prophet)
+
+    future = model.make_future_dataframe(periods=len(test))
+    future["valor"] = pd.concat([train["valor"], test["valor"]], ignore_index=True)
+    forecast = model.predict(future)
+
+    # Previsões Prophet
+    preds_pr = forecast[["ds", "yhat"]].tail(len(test))
+    preds_pr = preds_pr.set_index("ds")
+    y_test = test_prophet.set_index("ds")["y"]
+
+    metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
+    MAPE_pr = metrics_pr["MAPE"]
+
+    st.subheader("📊 Métricas do Modelo Prophet")
+    st.write(metrics_pr)
+    st.write(f"**Acurácia de {100 - (MAPE_pr * 100): .2f}%**")
+
+    # Resultados Prophet
+    prophet_results = preds_pr.reset_index()
+
+    fig, ax = plt.subplots(figsize=(14, 7))
+    ax.plot(test['Data'], test['valor'], label='Real', color='black')
+    ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
+    ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
+    ax.set_xlabel('Data')
+    ax.set_ylabel('Petróleo')
+    ax.legend()
+    st.pyplot(fig)
+
+    # Executar a aplicação no Streamlit
 if __name__ == "__main__":
     app()
