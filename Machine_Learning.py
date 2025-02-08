@@ -128,6 +128,7 @@ def app():
 
     # Modelo Prophet
     st.write("### 🔮 Modelo Prophet")
+    
     train_prophet = train.rename(columns={"Data": "ds", "valor": "y"})
     train_prophet["valor"] = train["valor"]
 
@@ -141,31 +142,13 @@ def app():
     future = model.make_future_dataframe(periods=len(test))
     future["valor"] = pd.concat([train["valor"], test["valor"]], ignore_index=True)
     forecast = model.predict(future)
-
-    preds_pr = forecast[["ds", "yhat"]].tail(len(test))  
+    
+    preds_pr = forecast[["ds", "yhat"]].tail(len(test))
     preds_pr = preds_pr.set_index("ds")
     y_test = test_prophet.set_index("ds")["y"]
 
     metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
     MAPE_pr = metrics_pr["MAPE"]
-    print("Prophet Metrics")
-    print(metrics_pr)
-    print(f"Acurácia de {100 - (MAPE_pr * 100): .2f}%")
-    
-    test_prophet = test.rename(columns={"data": "ds", "valor": "y"})[["ds", "y"]]
-
-    model = Prophet(daily_seasonality=True)
-    model.fit(train_prophet)
-
-    future = model.make_future_dataframe(periods=len(test))
-    forecast = model.predict(future)
-
-    preds_pr = forecast[["ds", "yhat"]].tail(len(test)).set_index("ds")
-    y_test = test_prophet.set_index("ds")["y"]
-
-    metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
-    MAPE_pr = metrics_pr["MAPE"]
-
     st.write("### 📊 Métricas do Modelo Prophet")
     st.write(metrics_pr)
     st.write(f"✅ **Acurácia do modelo:** {100 - (MAPE_pr * 100):.2f}%")
