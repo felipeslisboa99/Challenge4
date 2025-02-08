@@ -21,10 +21,7 @@ def app():
     df = pd.read_excel("base_petroleo.xlsx")
     df["data"] = pd.to_datetime(df["data"])
 
-    df = pd.DataFrame({
-        "data": df['data'],
-        "valor": df['preco_bruto_Brent_FOB']
-    })
+    df = df.rename(columns={"preco_bruto_Brent_FOB": "valor"})
 
     # Exibir os dados carregados
     st.write("### 📂 Dados Carregados")
@@ -42,17 +39,17 @@ def app():
 
     # Decomposição Sazonal
     st.write("### 🔍 Decomposição Sazonal")
-    result = seasonal_decompose(df['valor'], model='additive', period=365)
+    result = seasonal_decompose(df['valor'], model='additive', period=30)
     fig = result.plot()
     fig.set_size_inches(14, 7)
     st.pyplot(fig)
 
     # Série Temporal Diferenciada
-    df['Diferenciado'] = df['valor'].diff().dropna()
+    df['Diferenciado'] = df['valor'].diff()
 
     st.write("### 📊 Série Temporal Diferenciada")
     fig, ax = plt.subplots(figsize=(12, 6))
-    ax.plot(df['Diferenciado'])
+    ax.plot(df['Diferenciado'].dropna())
     ax.set_title('Série Temporal Diferenciada (Estacionarizada)')
     ax.set_xlabel('Tempo')
     ax.set_ylabel('Valores Diferenciados')
@@ -74,11 +71,11 @@ def app():
 
     # Preparação dos dados para o modelo
     df_petroleo = df.sort_values(by='data', ascending=True)
+
     train_size = len(df_petroleo) - 253
-    train, test = df_petroleo[:train_size], df_petroleo[train_size:]
+    train, test = df_petroleo[:train_size].copy(), df_petroleo[train_size:].copy()
 
     def create_features(df_f):
-        df_f = df_f.copy()
         df_f["year"] = df_f["data"].dt.year
         df_f["month"] = df_f["data"].dt.month
         df_f["day"] = df_f["data"].dt.day
@@ -88,21 +85,17 @@ def app():
     train = create_features(train)
     test = create_features(test)
 
-    FEATURES = ["year", "month", "day", "dayofweek", "valor"]
+    FEATURES = ["year", "month", "day", "dayofweek"]
     TARGET = "valor"
 
     x_train, y_train = train[FEATURES], train[TARGET]
     x_test, y_test = test[FEATURES], test[TARGET]
 
-    # Treinamento do modelo XGBoost
-    st.write("### 🚀 Treinamento do Modelo XGBoost")
     reg = xgb.XGBRegressor(objective="reg:squarederror")
     reg.fit(x_train, y_train)
 
-    # Previsões
     preds_xgb = reg.predict(x_test)
 
-    # Cálculo de métricas
     def calculate_metrics(y_true, y_pred):
         mse = mean_squared_error(y_true, y_pred)
         mae = mean_absolute_error(y_true, y_pred)
@@ -118,10 +111,23 @@ def app():
     st.write(f"**MAPE:** {metrics_xgb['MAPE']:.4f}")
     st.write(f"✅ **Acurácia do modelo:** {100 - (MAPE_xgb * 100):.2f}%")
 
+    # Gráfico de Comparação entre Real e Previsão
+    xgboost_results = pd.DataFrame({'Data': test['data'], 'Previsão': preds_xgb})
+
+    st.write("### 📉 Comparação entre Previsões e Valores Reais")
+    fig, ax = plt.subplots(figsize=(14, 7))
+    ax.plot(test['data'], test['valor'], label='Real', color='black')
+    ax.plot(xgboost_results['Data'], xgboost_results['Previsão'], label='XGBoost', color='orange')
+    ax.set_title('Comparação de Previsão do Modelo XGBoost com os Dados Reais')
+    ax.set_xlabel('Data')
+    ax.set_ylabel('Preço do Petróleo')
+    ax.legend()
+    st.pyplot(fig)
+
     # Modelo Prophet
     st.write("### 🔮 Modelo Prophet")
-    train_prophet = train.rename(columns={"data": "ds", "valor": "y"})
-    test_prophet = test.rename(columns={"data": "ds", "valor": "y"})
+    train_prophet = train.rename(columns={"data": "ds", "valor": "y"})[["ds", "y"]]
+    test_prophet = test.rename(columns={"data": "ds", "valor": "y"})[["ds", "y"]]
 
     model = Prophet(daily_seasonality=True)
     model.fit(train_prophet)
@@ -129,8 +135,7 @@ def app():
     future = model.make_future_dataframe(periods=len(test))
     forecast = model.predict(future)
 
-    preds_pr = forecast[["ds", "yhat"]].tail(len(test))
-    preds_pr = preds_pr.set_index("ds")
+    preds_pr = forecast[["ds", "yhat"]].tail(len(test)).set_index("ds")
     y_test = test_prophet.set_index("ds")["y"]
 
     metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
@@ -145,10 +150,3 @@ def app():
 
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.plot(test['data'], test['valor'], label='Real', color='black')
-    ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
-    ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
-    ax.set_xlabel('Data')
-    ax.set_ylabel('Petróleo')
-    ax.legend()
-    st.pyplot(fig)
-
