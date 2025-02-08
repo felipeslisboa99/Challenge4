@@ -161,6 +161,7 @@ def app():
     fig, ax = plt.subplots(figsize=(14, 7))
 
     ax.plot(test['Data'], test['valor'], label='Real', color='black')
+    
     ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
 
     ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
