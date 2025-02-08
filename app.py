@@ -43,3 +43,5 @@ st.sidebar.markdown("""
 - **Turma:** 6DTAT  
 - **Instituição:** FIAP - Pós em Data Analytics  
 """)
+if __name__ == "__main__":
+    app()

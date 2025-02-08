@@ -20,18 +20,11 @@ def app():
     # Carregar os dados
     df = pd.read_excel("base_petroleo.xlsx")
     df["data"] = pd.to_datetime(df["data"])
-    
-    # Criar dataframe formatado
+
     df = pd.DataFrame({
         "data": df['data'],
         "valor": df['preco_bruto_Brent_FOB']
     })
-
-    # Cálculo de média mensal e anual
-    df_mensal = df.groupby(df["data"].dt.to_period("M")).agg({"valor": "mean"}).reset_index()
-    df_mensal.rename(columns={"data": "mes", "valor": "mean_mensal"}, inplace=True)
-    df_anual = df.groupby(df["data"].dt.to_period("Y")).agg({"valor": "mean"}).reset_index()
-    df_anual.rename(columns={"data": "ano", "valor": "media_anual"}, inplace=True)
 
     # Exibir os dados carregados
     st.write("### 📂 Dados Carregados")
@@ -44,7 +37,6 @@ def app():
     ax.set_title('Série Temporal')
     ax.set_xlabel('Data')
     ax.set_ylabel('Valor')
-    ax.grid(True, which='major', axis='x', linestyle='--', color='gray', alpha=0.7)
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
@@ -56,8 +48,8 @@ def app():
     st.pyplot(fig)
 
     # Série Temporal Diferenciada
-    df['Diferenciado'] = df['valor'].diff()
-    
+    df['Diferenciado'] = df['valor'].diff().dropna()
+
     st.write("### 📊 Série Temporal Diferenciada")
     fig, ax = plt.subplots(figsize=(12, 6))
     ax.plot(df['Diferenciado'])
@@ -86,6 +78,7 @@ def app():
     train, test = df_petroleo[:train_size], df_petroleo[train_size:]
 
     def create_features(df_f):
+        df_f = df_f.copy()
         df_f["year"] = df_f["data"].dt.year
         df_f["month"] = df_f["data"].dt.month
         df_f["day"] = df_f["data"].dt.day
@@ -125,31 +118,15 @@ def app():
     st.write(f"**MAPE:** {metrics_xgb['MAPE']:.4f}")
     st.write(f"✅ **Acurácia do modelo:** {100 - (MAPE_xgb * 100):.2f}%")
 
-    # Gráfico de Comparação entre Real e Previsão
-    xgboost_results = pd.DataFrame({'Data': test['data'], 'Previsão': preds_xgb})
-
-    st.write("### 📉 Comparação entre Previsões e Valores Reais")
-    fig, ax = plt.subplots(figsize=(14, 7))
-    ax.plot(test['data'], test['valor'], label='Real', color='black')
-    ax.plot(xgboost_results['Data'], xgboost_results['Previsão'], label='XGBoost', color='orange')
-    ax.set_title('Comparação de Previsão do Modelo XGBoost com os Dados Reais')
-    ax.set_xlabel('Data')
-    ax.set_ylabel('Preço do Petróleo')
-    ax.legend()
-    st.pyplot(fig)
     # Modelo Prophet
-    train_prophet = train.rename(columns={"Data": "ds", "valor": "y"})
-    train_prophet["valor"] = train["valor"]
-
-    test_prophet = test.rename(columns={"Data": "ds", "valor": "y"})
-    test_prophet["valor"] = test["valor"]
+    st.write("### 🔮 Modelo Prophet")
+    train_prophet = train.rename(columns={"data": "ds", "valor": "y"})
+    test_prophet = test.rename(columns={"data": "ds", "valor": "y"})
 
     model = Prophet(daily_seasonality=True)
-    model.add_regressor("valor")
     model.fit(train_prophet)
 
     future = model.make_future_dataframe(periods=len(test))
-    future["valor"] = pd.concat([train["valor"], test["valor"]], ignore_index=True)
     forecast = model.predict(future)
 
     preds_pr = forecast[["ds", "yhat"]].tail(len(test))
@@ -159,23 +136,21 @@ def app():
     metrics_pr = calculate_metrics(y_test, preds_pr["yhat"])
     MAPE_pr = metrics_pr["MAPE"]
 
-    st.subheader("📊 Métricas do Modelo Prophet")
+    st.write("### 📊 Métricas do Modelo Prophet")
     st.write(metrics_pr)
-    st.write(f"Acurácia de {100 - (MAPE_pr * 100): .2f}%")
+    st.write(f"✅ **Acurácia do modelo:** {100 - (MAPE_pr * 100):.2f}%")
 
-    # Resultados Prophet
+    # Gráfico Prophet
     prophet_results = preds_pr.reset_index()
 
     fig, ax = plt.subplots(figsize=(14, 7))
-    ax.plot(test['Data'], test['valor'], label='Real', color='black')
+    ax.plot(test['data'], test['valor'], label='Real', color='black')
     ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
-    
     ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
     ax.set_xlabel('Data')
     ax.set_ylabel('Petróleo')
     ax.legend()
     st.pyplot(fig)
 
-    # Executar a aplicação no Streamlit
 if __name__ == "__main__":
     app()
