@@ -169,4 +169,43 @@ def app():
     ax.set_ylabel('Petróleo')
     ax.legend()
 
+    df_modelos = pd.DataFrame(
+    [metrics_xgb, metrics_pr],
+    columns=["MAE", "MSE", "MAPE"],
+    index=["XGBoost", "Prophet"],
+)
+    
+    # Supondo que df_modelos já esteja carregado
+    # df_modelos = pd.read_csv('seu_arquivo.csv') ou já tenha sido definido no código
+
+    # Criando a coluna de Acurácia no DataFrame
+    df_modelos["Acurácia%"] = (100 - (df_modelos["MAPE"] * 100))
+    df_modelos["Acurácia%"] = df_modelos["Acurácia%"].map('{:,.2f}'.format)
+
+    # Ordenando os modelos por acurácia
+    df_modelos = df_modelos.sort_values(by="Acurácia%", ascending=False)
+
+    # Exibindo a tabela no Streamlit
+    st.write("### Comparação de Modelos")
+    st.dataframe(df_modelos)
+
+    # Criando a figura com design aprimorado
+    fig, ax = plt.subplots(figsize=(14, 7))
+
+    # Plotando os dados reais
+    test = pd.DataFrame({'Data': test['Data'], 'valor': test['valor']})  # Garantindo que 'test' está em formato correto
+    ax.plot(test['Data'], test['valor'], label='Real', color='black', linewidth=2)
+
+    # Plotando previsões dos modelos
+    ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue', linewidth=2, linestyle='dashed')
+    ax.plot(xgboost_results['Data'], xgboost_results['Previsão'], label='XGBoost', color='orange', linewidth=2, linestyle='dotted')
+    # Configurações do gráfico
+    ax.set_title('Comparação de Previsões dos Modelos com os Dados Reais', fontsize=14, fontweight='bold')
+    ax.set_xlabel('Data', fontsize=12)
+    ax.set_ylabel('Petróleo', fontsize=12)
+    ax.legend(frameon=True, loc='best', fontsize=10)
+    ax.grid(True, linestyle='--', alpha=0.6)
+
+    # Exibindo o gráfico no Streamlit
     st.pyplot(fig)
+
