@@ -17,4 +17,6 @@ class MultiApp:
             self.apps,
             format_func=lambda app: app["title"]
         )
-      
+
+        # 🔥 IMPORTANTE: Chamar a função da página selecionada
+        app["function"]()

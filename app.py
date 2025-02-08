@@ -26,7 +26,8 @@ app.add_app("🚀 Deploy", deploy_app)
 app.add_app("📈 Análise de Dados", analise_dados_app)
 
 # Rodar o MultiApp (controla a navegação entre as páginas)
-app.run()
+if __name__ == "__main__":
+    app.run()
 
 # Adicionar os integrantes abaixo da navegação
 st.sidebar.markdown("### 👥 Integrantes do Projeto")
