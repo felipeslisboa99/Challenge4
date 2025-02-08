@@ -39,7 +39,7 @@ def app():
 
     # Decomposição Sazonal
     st.write("### 🔍 Decomposição Sazonal")
-    result = seasonal_decompose(df['valor'], model='additive', period=30)
+    result = seasonal_decompose(df['valor'], model='additive', period=365)
     fig = result.plot()
     fig.set_size_inches(14, 7)
     st.pyplot(fig)
@@ -70,12 +70,14 @@ def app():
     st.pyplot(fig)
 
     # Preparação dos dados para o modelo
+    df_petroleo = df
     df_petroleo = df.sort_values(by='data', ascending=True)
 
     train_size = len(df_petroleo) - 253
     train, test = df_petroleo[:train_size].copy(), df_petroleo[train_size:].copy()
 
     def create_features(df_f):
+        df_f["Data"] = pd.to_datetime(df_f["data"])
         df_f["year"] = df_f["data"].dt.year
         df_f["month"] = df_f["data"].dt.month
         df_f["day"] = df_f["data"].dt.day
@@ -85,7 +87,7 @@ def app():
     train = create_features(train)
     test = create_features(test)
 
-    FEATURES = ["year", "month", "day", "dayofweek"]
+    FEATURES = ["year", "month", "day", "dayofweek", "valor"]
     TARGET = "valor"
 
     x_train, y_train = train[FEATURES], train[TARGET]
@@ -146,7 +148,18 @@ def app():
     st.write(f"✅ **Acurácia do modelo:** {100 - (MAPE_pr * 100):.2f}%")
 
     # Gráfico Prophet
+    st.write("### 📊 Comparação de Previsão do Modelo Prophet com os Dados Reais")
+
     prophet_results = preds_pr.reset_index()
 
     fig, ax = plt.subplots(figsize=(14, 7))
-    ax.plot(test['data'], test['valor'], label='Real', color='black')
+
+    ax.plot(test['Data'], test['valor'], label='Real', color='black')
+    ax.plot(prophet_results['ds'], prophet_results['yhat'], label='Prophet', color='blue')
+
+    ax.set_title('Comparação de Previsão do Modelo Prophet com os Dados Reais')
+    ax.set_xlabel('Data')
+    ax.set_ylabel('Petróleo')
+    ax.legend()
+
+    st.pyplot(fig)
