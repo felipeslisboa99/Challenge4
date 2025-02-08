@@ -15,7 +15,7 @@ from sklearn.metrics import (
 )
 from statsmodels.tsa.seasonal import seasonal_decompose
 
-df = pd.read_excel('/content/drive/MyDrive/PosTech/Fase4/Tech Cha/base_petroleo.xlsx')
+df = pd.read_excel("base_petroleo.xlsx")
 df.head()
 
 df = pd.DataFrame({
