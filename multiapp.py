@@ -17,6 +17,4 @@ class MultiApp:
             self.apps,
             format_func=lambda app: app["title"]
         )
-        if __name__ == "__main__":
-            app()
-
+      

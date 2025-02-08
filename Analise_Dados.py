@@ -92,6 +92,4 @@ def app():
         unsafe_allow_html=True
     )
 
-# Executar a aplicação
-if __name__ == "__main__":
-    app()
+    # Executar a aplicação

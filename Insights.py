@@ -94,6 +94,4 @@ def app():
 
         st.pyplot(fig2)
         
-if __name__ == "__main__":
-     app()
 
