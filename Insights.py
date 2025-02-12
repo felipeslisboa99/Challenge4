@@ -34,7 +34,7 @@ def app():
             <iframe 
                 width="100%" 
                 height="600" 
-                src="https://app.powerbi.com/groups/me/reports/866e1455-d41e-4022-b593-a11d4a86485b/0082ee71249d6144a69d?experience=power-bi" 
+                src="<iframe title="Challenge 4" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNTAzMjZlODYtODM0My00ZDc3LTgxM2QtMmE2ZjhjMmMxNzJiIiwidCI6IjViNjM0YWEwLTFiNTktNDJmOS04YTM5LTBmMWJkY2RiYjA1NSJ9" frameborder="0" allowFullScreen="true"></iframe>" 
                 frameborder="0" 
                 allowFullScreen="true">
             </iframe>
