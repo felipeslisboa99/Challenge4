@@ -29,18 +29,20 @@ def app():
             unsafe_allow_html=True
         )
 
-        st.markdown(
-            """
-            <iframe 
-                width="100%" 
-                height="600" 
-                src="<iframe title="Challenge 4" width="600" height="373.5" src="https://app.powerbi.com/view?r=eyJrIjoiNTAzMjZlODYtODM0My00ZDc3LTgxM2QtMmE2ZjhjMmMxNzJiIiwidCI6IjViNjM0YWEwLTFiNTktNDJmOS04YTM5LTBmMWJkY2RiYjA1NSJ9" 
-                frameborder="0" 
-                allowFullScreen="true">
-            </iframe>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        """
+        <h2 style="text-align:center;">📊 Dashboard Power BI</h2>
+        <iframe 
+            title="Challenge 4" 
+            width="100%" 
+            height="600" 
+            src="https://app.powerbi.com/view?r=eyJrIjoiNTAzMzJIOYtODM0Yy00ZDC3LTgxM2QtMmEzZjhjMmMxNzJiIiwidCI6IjViNjM0YWEwLTFiNTktNDJmOS04YTM5LTBmMWJkY2RiYjA1NSJ9"
+            frameborder="0"
+            allowFullScreen="true">
+        </iframe>
+        """,
+    unsafe_allow_html=True
+)
 
     # Conteúdo da aba Insights Detalhados
     with tab2:
