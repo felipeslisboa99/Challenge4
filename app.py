@@ -36,6 +36,7 @@ st.sidebar.markdown("""
 - **Renato Batista dos Santos**
 - **Jéssyca Dias Matos Lima**
 - **Everton Ferreira Alves**
+- **Roberto Silva de Sa Barreto**
 """)
 
 #Adicionar informações sobre a turma e a instituição no final
