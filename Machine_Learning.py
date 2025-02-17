@@ -56,18 +56,18 @@ def app():
     st.pyplot(fig)
 
     # Autocorrelação (ACF)
-    st.write("### 🔄 Função de Autocorrelação (ACF)")
-    fig, ax = plt.subplots(figsize=(12, 6))
-    _plot_acf(df['Diferenciado'].dropna(), lags=30, ax=ax)
-    ax.set_title('ACF da Série Diferenciada')
-    st.pyplot(fig)
+    #st.write("### 🔄 Função de Autocorrelação (ACF)")
+    #fig, ax = plt.subplots(figsize=(12, 6))
+    #_plot_acf(df['Diferenciado'].dropna(), lags=30, ax=ax)
+    #ax.set_title('ACF da Série Diferenciada')
+    #st.pyplot(fig)
 
     # Autocorrelação Parcial (PACF)
-    st.write("### 🔄 Função de Autocorrelação Parcial (PACF)")
-    fig, ax = plt.subplots(figsize=(12, 6))
-    _plot_pacf(df['Diferenciado'].dropna(), lags=30, ax=ax)
-    ax.set_title('PACF da Série Diferenciada')
-    st.pyplot(fig)
+    #st.write("### 🔄 Função de Autocorrelação Parcial (PACF)")
+    #fig, ax = plt.subplots(figsize=(12, 6))
+    #_plot_pacf(df['Diferenciado'].dropna(), lags=30, ax=ax)
+    #ax.set_title('PACF da Série Diferenciada')
+    #st.pyplot(fig)
 
     # Preparação dos dados para o modelo
     df_petroleo = df
