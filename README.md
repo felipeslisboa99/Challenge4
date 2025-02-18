@@ -45,10 +45,14 @@ Certifique-se de ter instalado:
 4. **Instale as dependências**: pip install -r requirements.txt
 ## 📊 Power Bi
 ![image](https://github.com/user-attachments/assets/7414e3e4-1bfd-4d52-b9d1-196ed8e4df64)
+
 ## 🔗 Links
 -**Github**: https://github.com/felipeslisboa99/Challenge4
+
 -**Power Bi**: https://app.powerbi.com/groups/me/reports/866e1455-d41e-4022-b593-a11d4a86485b/0082ee71249d6144a69d?experience=power-bi
+
 -**Youtube**: https://www.youtube.com/watch?v=TC8sWwqQFb8
+
 -**Streamlit**: https://challenge4.streamlit.app/
 
 
